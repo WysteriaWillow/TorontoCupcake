@@ -1,0 +1,288 @@
+/* 1. SAFETY DEFAULTS - Prevents Black Flash */
+html,
+body {
+    background-color: #FFDEF9;
+    /* Matches --bg-pink */
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --accent: #ff2f8a;
+    --bg-pink: #FFDEF9;
+    --dark-pink: #53142f;
+    --footer-pink: #FFB5D5;
+    --pink: #f1227c;
+    --font-main: 'Lemonada', cursive, system-ui;
+}
+
+body {
+    background: var(--bg-pink);
+    color: var(--dark-pink);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+}
+
+/* Navbar */
+.navv {
+    background-color: rgba(255, 222, 249, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+    backdrop-filter: blur(10px);
+}
+
+.logo-btn,
+.cart-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 4px 4px rgba(85, 29, 83, 0.1);
+    /* Reduced darkness */
+    border: none;
+    background: white;
+}
+
+@media(min-width: 992px) {
+    .navbar-nav {
+        background: #fff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        box-shadow: 5px 4px 4px rgba(85, 29, 83, 0.1);
+    }
+
+    .nav-link {
+        color: var(--accent) !important;
+        margin: 0 10px;
+    }
+}
+
+/* Hero Section */
+.header-hero {
+    position: relative;
+    /* Added hardcoded pink fallback to prevent flashing */
+    background: #FFDEF9 url('ASSETS/sprinkles.png') no-repeat center / cover;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    position: relative;
+    top: -50px;
+}
+
+.brand h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: var(--pink);
+    text-shadow: 3px 3px 0px var(--dark-pink);
+    line-height: 1;
+}
+
+.brand h2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--pink);
+    text-shadow: 2px 2px 0px var(--dark-pink);
+}
+
+.brand p {
+    font-size: 1rem;
+}
+
+/* Cupcake Sizing */
+.cupcake-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    top: 10px;
+    transition: all 0.4s ease-in-out;
+}
+
+.cupcake {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* Best Sellers */
+.section-2 {
+    /* Added hardcoded pink fallback to prevent flashing */
+    background: #FFB5D5 url('ASSETS/banner.png') no-repeat center top / cover;
+    padding: 6rem 0;
+}
+
+.section-2 h2 {
+    margin-top: 3rem;
+    color: var(--pink);
+    font-size: 5rem;
+    text-shadow: 4px 5px 0px var(--dark-pink);
+}
+
+.card {
+    border: none;
+    border-radius: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Special Orders */
+#section-3 {
+    background: var(--bg-pink);
+    padding: 5rem 0;
+}
+
+.gift-box {
+    /* Set the specific size you want here */
+    width: 300px;
+    height: auto;
+    /* Maintains original proportions */
+
+    /* Subtle shadow to make it pop off the pink background */
+    filter: drop-shadow(10px 5px 4px rgba(0, 0, 0, 0.575));
+
+    /* Ensures it doesn't get too big on massive screens */
+    max-width: 100%;
+}
+
+
+.footer {
+    background: #ff9cc7;
+}
+
+.btn-pink {
+    background: var(--accent);
+    color: white;
+    border-radius: 10px;
+    padding: 10px 25px;
+    transition: 0.3s;
+}
+
+.btn-pink:hover {
+    background: #d61a6b;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Custom Media Queries for Cupcake Sizing */
+@media (max-width: 1050px) {
+    .cupcake-container {
+        max-width: 400px;
+    }
+
+    .brand {
+        top: -50px;
+        left: 60px;
+    }
+    .section-2 h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 989px) {
+    .cupcake-container {
+        max-width: 350px;
+        top: -100px;
+    }
+
+    .brand {
+        top: 0;
+        left: 0;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem;
+    }
+    .section-2 h2 {
+        margin-top: 5rem;
+        color: var(--pink);
+        text-shadow: 2px 3px 0px var(--dark-pink);
+    }
+}
+
+@media (max-width: 720px) {
+    .cupcake-container {
+        max-width: 280px;
+        top: -80px;
+    }
+
+    .header-hero {
+        padding: 3rem 0;
+    }
+    .gift-box {
+        width: 200px;
+    }
+    .section-2 h2 {
+         font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 380px) {
+
+    /* .navv {
+                padding-top: 1.8rem;
+            } */
+    .cupcake-container {
+        max-width: 220px;
+        position: relative;
+        top: -80px;
+    }
+
+    .brand p {
+        font-size: 0.8rem;
+    }
+
+    .brand .btn {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        white-space: nowrap;
+
+    }
+
+    .section-2 h2 {
+        margin-top: 5rem;
+        color: var(--pink);
+        text-shadow: 2px 3px 0px var(--dark-pink);
+        font-size: 2rem;
+    }
+    .gift-box {
+        width: 150px;
+    }
+    .section-2 .card {
+        margin-bottom: 10px;
+    }
+
+    /* Reduce the height of the image so the card is shorter */
+    .section-2 .card-img-top {
+        height: 140px; /* Reduced from 200px */
+    }
+
+    /* Make the text smaller to fit the smaller card */
+    .section-2 .card-body {
+        padding: 0.75rem;
+    }
+
+    .section-2 .card-body p {
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+}
