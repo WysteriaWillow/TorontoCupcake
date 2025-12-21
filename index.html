@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,8 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg navv">
@@ -22,7 +24,8 @@
                 <button class="btn btn-light cart-btn flex-shrink-0">
                     <i class="fa fa-shopping-cart"></i>
                 </button>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
@@ -30,7 +33,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="mainNav">
                 <ul class="navbar-nav my-3 my-lg-0">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#section-2">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="#section-3">Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="#section-4">Contact</a></li>
                 </ul>
@@ -45,10 +48,11 @@
                     <div class="brand">
                         <h1>TORONTO</h1>
                         <h2>CUPCAKE</h2>
-                        <p class="lead fw-bold mt-3">Delivering premium, freshly baked joy across Toronto and the GTA.</p>
+                        <p class="lead fw-bold mt-3">Delivering premium, freshly baked joy across Toronto and the GTA.
+                        </p>
                         <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4">
-                            <a href="#section-3" class="btn btn-pink px-4 shadow-sm">About Us</a>
-                            <a href="#section-2" class="btn btn-pink px-4 shadow-sm">Order Now</a>
+                            <a href="#section-2" class="btn btn-pink px-4 shadow-sm">See More</a>
+                            <a href="#" class="btn btn-pink px-4 shadow-sm">Order Now</a>
                         </div>
                     </div>
                 </div>
@@ -98,16 +102,50 @@
                     </div>
                 </div>
             </div>
+            <div class="d-flex justify-content-center justify-content-center mt-5">
+                <a href="#" class="btn btn-pink px-4 shadow-sm">View Products</a>
+
+            </div>
         </div>
     </section>
-
-    <section id="section-3">
+    <section class="features" id="section-3">
         <div class="container">
+            <h2>Why Choose Us?</h2>
+
+            <div class="slider-wrapper">
+                <div class="feature-grid" id="featureGrid">
+                    <div class="feature">
+                        <h3>Fresh Daily</h3>
+                        <p>All our cupcakes are baked fresh every morning using the best ingredients.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Custom Orders</h3>
+                        <p>We specialize in custom cupcakes for weddings, birthdays, and special events.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Vegan Options</h3>
+                        <p>A variety of vegan and gluten-free options available for all dietary needs.</p>
+                    </div>
+                </div>
+
+                <div class="arrow-container">
+                    <button class="nav-arrow" onclick="scrollSlider(-1)">&#10094;</button>
+                    <button class="nav-arrow" onclick="scrollSlider(1)">&#10095;</button>
+                </div>
+            </div>
+
+            <div class="scroll-dots" id="scrollDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        <div class="container special">
             <div class="row align-items-center text-center text-md-start g-4">
                 <div class="col-md-6">
                     <h3 class="display-5 fw-bold">Looking for Something Extra Special?</h3>
                     <p class="fs-5">We offer custom designs for weddings, corporate events, and private parties.</p>
-                    <a href="#section-4" class="btn btn-outline-dark px-4 mt-3">Contact Our Bakers</a>
+                    <a href="#section-4" class="btn btn-pink px-4 mt-3">Contact Our Bakers</a>
                 </div>
                 <div class="col-md-6 text-center">
                     <img src="ASSETS/giftBox.png" alt="Gift Box" class="gift-box mx-auto">
@@ -115,6 +153,8 @@
             </div>
         </div>
     </section>
+
+
 
     <footer id="section-4" class="footer py-5">
         <div class="container">
@@ -125,7 +165,7 @@
                     <p class="mb-0 fw-bold">(416) 555-0123</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <div class="d-flex justify-content-center justify-content-md-end gap-4">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-4 socials">
                         <a href="#" class="text-dark"><i class="fab fa-facebook fa-2x"></i></a>
                         <a href="#" class="text-dark"><i class="fab fa-instagram fa-2x"></i></a>
                         <a href="#" class="text-dark"><i class="fab fa-twitter fa-2x"></i></a>
@@ -136,5 +176,39 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 1. Initialize the slider element
+        const slider = document.getElementById('featureGrid');
+
+        /**
+         * Handles the Arrow Click functionality
+         * @param {number} direction - 1 for right, -1 for left
+         */
+        function scrollSlider(direction) {
+            // We use offsetWidth to get the exact width of the visible area
+            const cardWidth = slider.offsetWidth;
+
+            slider.scrollBy({
+                left: direction * cardWidth,
+                behavior: 'smooth'
+            });
+        }
+
+        /**
+         * Syncs the Navigation Dots with the scroll position
+         */
+        slider.addEventListener('scroll', () => {
+            const dots = document.querySelectorAll('.dot');
+
+            // Calculate index by dividing scroll distance by the width of one card
+            const activeIndex = Math.round(slider.scrollLeft / slider.offsetWidth);
+
+            dots.forEach((dot, index) => {
+                // toggle() adds 'active' if the condition is true, removes if false
+                dot.classList.toggle('active', index === activeIndex);
+            });
+        });
+    </script>
 </body>
+
 </html>
