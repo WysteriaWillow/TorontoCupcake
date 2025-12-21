@@ -198,8 +198,8 @@ h6 {
 /* Mission & Promise Styling */
 .mission-promise {
     background-color: #fff4f8;
-    padding-bottom: 5rem;
-    margin: 0 5rem;
+    padding-bottom: 5rem !important;
+    padding: 0 5rem;
 
 }
 
@@ -296,10 +296,7 @@ h6 {
         font-size: 2rem;
     }
 
-    .mission-promise {
-        margin: 0 2rem;
-    }
-    .abt p{
+    .mission-promise, .abt p {
         padding: 0 2rem;
     }
     .section-title {
@@ -323,14 +320,9 @@ h6 {
         padding-top: 42vw;
     }
 
-    .mission-promise {
-        padding: 40px 15px !important;
-        margin: 0 0.8rem;
-    }
-    .abt p{
+    .mission-promise, .abt p {
         padding: 0 0.8rem;
     }
-
     .section-title {
         font-size: 1.6rem !important;
         margin-bottom: 1rem;
