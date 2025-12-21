@@ -232,9 +232,7 @@ h6 {
 @media (min-width: 1920px) {
     .cupcake-container {
         max-width: 600px;
-
     }
-
     .brand {
         top: -50px;
         left: -60px;
@@ -255,13 +253,25 @@ h6 {
     .section-2 {
         padding-top: 12rem;
     }
-
     .section-2 h2 {
         font-size: 5rem;
     }
+    .navv .container, 
+    .navv .container-fluid {
+        display: flex !important;
+        justify-content: center !important; 
+        gap: 20px; 
+        max-width: 100%;
+    }
+    .navbar-collapse {
+        flex-grow: 0 !important; 
+    }
+    .navbar-brand, 
+    .cart-btn, 
+    .logo-btn {
+        margin: 0 !important;
+    }
 }
-
-
 @media (max-width: 1200px) {
     .feature-grid {
         display: grid;
@@ -326,7 +336,7 @@ h6 {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
-        gap: 0; /* Important: 0 gap for 100% width cards */
+        gap: 0; 
         padding: 0;
         scrollbar-width: none;
     }
@@ -334,11 +344,11 @@ h6 {
     .feature-grid::-webkit-scrollbar { display: none; }
 
     .feature {
-        flex: 0 0 100%; /* Shows EXACTLY one card */
+        flex: 0 0 100%; 
         scroll-snap-align: start;
         min-width: 100%;
         border-radius: 15px;
-        box-shadow: none; /* Cleaner for full-width */
+        box-shadow: none; 
     }
 
     /* Arrow Styling */

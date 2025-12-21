@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +9,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="about.css">
-    
+
 </head>
+
 <body>
- 
-<nav class="navbar navbar-expand-lg navv sticky-top">
+
+    <nav class="navbar navbar-expand-lg navv sticky-top">
         <div class="container">
             <a class="logo-btn btn btn-light" href="index.html">
                 <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
             </a>
 
-            <div class="d-flex align-items-center gap-2 ms-auto order-lg-last">
+            <div class="d-flex align-items-center gap-2 order-lg-last">
                 <button class="btn btn-light cart-btn flex-shrink-0">
                     <i class="fa fa-shopping-cart"></i>
                 </button>
@@ -39,50 +41,44 @@
         </div>
     </nav>
 
-    <!-- <div class="sidebar" id="cart-sidebar">
-        <div class="sidebar-header">
-            <h3>Shopping Cart</h3>
-            <button class="close-btn" onclick="closeSidebar()">&times;</button>
-        </div>
-        <div class="sidebar-content">
-            <p>Your cart is empty.</p>
-        </div>
-    </div> -->
-
     <section class="hero">
         <div class="hero-content">
             <h1>Welcome to Toronto Cupcake</h1>
             <p>Delicious cupcakes made with love in the heart of Toronto</p>
         </div>
     </section>
- 
-   
 
-<section class="about">
-    <div class="container">
+    <section class="about">
+    <div class="container-fluid">
         <div class="row g-5">
             <div class="col-lg-7 abt">
                 <h2>About Us</h2>
-                <p>Toronto Cupcake is a family-owned bakery dedicated to creating the most delicious and creative cupcakes in Toronto. Founded in 2010, we've been serving the community with fresh, high-quality ingredients and unique flavors that capture the essence of our vibrant city.</p>
+                <p>
+                    Toronto Cupcake is a family-owned bakery dedicated to creating the most delicious and creative
+                    cupcakes in Toronto. Founded in 2010, we've been serving the community with fresh, high-quality
+                    ingredients and unique flavors that capture the essence of our vibrant city.
+                </p>
             </div>
 
             <div class="col-lg-5 text-center">
                 <div class="michelle-card p-3">
                     <img src="ASSETS/michelle.webp" 
-                         alt="Michelle Harrison" 
+                         alt="Michelle Harrison"
                          class="img-fluid rounded-4 shadow-sm mb-3 michelle-toggle-img" 
                          onclick="showMoreMichelle()"
                          style="cursor: pointer;">
-                    
-                    <p id="click-hint" class="fw-bold mt-2" style="color: var(--accent);">Want to know more about Michelle?</p>
+
+                    <p id="click-hint" class="fw-bold mt-2" style="color: var(--accent);">
+                        Want to know more about Michelle?
+                    </p>
                     <p id="click-subtext" class="small text-muted">Click the photo to see more!</p>
 
                     <div id="michelle-content" class="michelle-text-container" style="display: none; opacity: 0;">
                         <h3 class="h4 mt-3">About Michelle</h3>
                         <p class="small text-muted">..........................</p>
                         <p>
-                            Toronto Cupcake was created by Michelle Harrison to pursue her love of baking. 
-                            Inspired by her mother, Michelle opened Toronto Cupcake in August 2010 
+                            Toronto Cupcake was created by Michelle Harrison to pursue her love of baking.
+                            Inspired by her mother, Michelle opened Toronto Cupcake in August 2010
                             as one of Canada's first gourmet cupcakeries.
                         </p>
                         <p class="small text-muted">..........................</p>
@@ -91,92 +87,42 @@
             </div>
         </div>
     </div>
-    
 </section>
-<section class="mission-promise">
-     <div class="container">
-        <div class="row align-items-center mb-5">
-            <div class="col-md-6 order-2 order-md-1">
-                <h2 class="section-title">Our Mission</h2>
-                <p class="section-text">
-                    Our mission is to bring joy to every bite, whether it's a classic vanilla cupcake or an adventurous flavor like maple bacon or matcha green tea. We use only the finest ingredients, from locally sourced produce to premium chocolates and spices.
-                </p>
-            </div>
-            <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
-                <div class="image-wrapper">
-                    <img src="ASSETS/mission.png" alt="mission logo" class="img-fluid custom-rounded shadow">
+    <section class="mission-promise">
+        <div class="container-fluid">
+            <div class="row align-items-center mb-5">
+                 <div class="col-md-6 order-2 order-md-1 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
+                    <div class="image-wrapper">
+                        <img src="ASSETS/mission.png" alt="mission logo" class="img-fluid custom-rounded shadow">
+                    </div>
                 </div>
-            </div>
-        </div>
+                <div class="col-md-6 order-1 order-md-2">
+                    <h2 class="section-title">Our Mission</h2>
+                    <p class="section-text">
+                        Our mission is to bring joy to every bite, whether it's a classic vanilla cupcake or an
+                        adventurous flavor like maple bacon or matcha green tea. We use only the finest ingredients,
+                        from locally sourced produce to premium chocolates and spices.
+                    </p>
+                </div>
 
-        <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
-                <div class="image-wrapper">
-                    <img src="ASSETS/promise.png" alt="promise logo" class="img-fluid custom-rounded shadow">
-                </div>
             </div>
-            <div class="col-md-6">
-                <h2 class="section-title">Our Promise</h2>
-                <p class="section-text">
-                    We commit to delivering a sweet treat that brightens your day, crafted with the same love and care that started our journey in 2010.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- <section class="mission-promise py-5">
-    <div class="container">
-        <div class="row align-items-center mb-5">
-            <div class="col-md-6 order-2 order-md-1">
-                <h2 class="section-title">Our Mission</h2>
-                <p class="section-text">
-                    Our mission is to bring joy to every bite, whether it's a classic vanilla cupcake or an adventurous flavor like maple bacon or matcha green tea. We use only the finest ingredients, from locally sourced produce to premium chocolates and spices.
-                </p>
-            </div>
-            <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
-                <div class="image-wrapper">
-                    <img src="ASSETS/mission.png" alt="mission logo" class="img-fluid custom-rounded shadow">
-                </div>
-            </div>
-        </div>
 
-        <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
-                <div class="image-wrapper">
-                    <img src="ASSETS/promise.png" alt="promise logo" class="img-fluid custom-rounded shadow">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="section-title">Our Promise</h2>
+                    <p class="section-text">
+                        We commit to delivering a sweet treat that brightens your day, crafted with the same love and
+                        care that started our journey in 2010.
+                    </p>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <h2 class="section-title">Our Promise</h2>
-                <p class="section-text">
-                    We commit to delivering a sweet treat that brightens your day, crafted with the same love and care that started our journey in 2010.
-                </p>
-            </div>
-        </div>
-    </div>
-</section> -->
-
-    <!-- <section class="features">
-        <div class="container">
-            <h2>Why Choose Us?</h2>
-            <div class="feature-grid">
-                <div class="feature">
-                    <h3>Fresh Daily</h3>
-                    <p>All our cupcakes are baked fresh every morning using the best ingredients.</p>
-                </div>
-                <div class="feature">
-                    <h3>Custom Orders</h3>
-                    <p>We specialize in custom cupcakes for weddings, birthdays, and special events.</p>
-                </div>
-                <div class="feature">
-                    <h3>Vegan Options</h3>
-                    <p>A variety of vegan and gluten-free options available for all dietary needs.</p>
+                <div class="col-md-6 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
+                    <div class="image-wrapper">
+                        <img src="ASSETS/promise.png" alt="promise logo" class="img-fluid custom-rounded shadow">
+                    </div>
                 </div>
             </div>
         </div>
-    </section> -->
-
- 
+    </section>
     <footer id="section-4" class="footer py-5">
         <div class="container">
             <div class="row g-4 align-items-center text-center text-md-start">
@@ -195,25 +141,24 @@
             </div>
         </div>
     </footer>
-  <script>
-function showMoreMichelle() {
+    <script>
+        function showMoreMichelle() {
     const content = document.getElementById('michelle-content');
     const hint = document.getElementById('click-hint');
     const subtext = document.getElementById('click-subtext');
-    
-    // Check if the content is hidden
-    if (content.style.display === "none") {
-        // Hide the hints
+
+    if (content.style.display === "none" || content.style.display === "") {
+        // Show Bio, Hide Hints
         hint.style.display = "none";
         subtext.style.display = "none";
-        
-        // Show the content with a fade-in effect
         content.style.display = "block";
+        
+        // Brief timeout to allow display:block to register before changing opacity
         setTimeout(() => {
             content.style.opacity = "1";
         }, 10);
     } else {
-        // Optional: Toggle back to hint if clicked again
+        // Hide Bio, Show Hints
         content.style.opacity = "0";
         setTimeout(() => {
             content.style.display = "none";
@@ -222,7 +167,8 @@ function showMoreMichelle() {
         }, 500);
     }
 }
-</script>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
