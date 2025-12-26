@@ -75,7 +75,7 @@ main {
 
 /* Section 2 */
 .section-2 {
-    background: #FFB5D5 url('ASSETS/exBanner.png') no-repeat center top / cover;
+    background: #FFB5D5 url('ASSETS/bigBanner.png') no-repeat center top / cover;
     padding-top: 12rem;   
 }
 .section-2 h2 {
