@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+
+}
+:root {
+    --accent: #ff2f8a;
+    --bg-pink: #FFDEF9;
+    --dark-pink: #53142f;
+    --footer-pink: #FFB5D5;
+    --pink: #f1227c;
+    --font-main: 'Lemonada', cursive, system-ui;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: clip;
+    position: relative;
+    background: var(--bg-pink);
+    color: var(--dark-pink);
+    font-family: var(--font-main);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+}
+
+
+/* Navbar */
+.navv {
+    background:  rgba(255, 222, 249, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+}
+
+.logo-btn,
+.cart-btn,
+.back-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 4px 4px rgba(85, 29, 83, 0.1);
+    border: none;
+    background: white;
+}
+
+.logo-btn:hover,
+.cart-btn:hover,
+.back-btn:hover {
+    background-color: var(--footer-pink);
+}
+
+.cart-btn i, .back-btn i {
+    color: var(--pink);
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: var(--accent);
+}
+
+.dropdown-item:hover {
+    background-color: #f3c1d7;
+    color: var(--dark-pink);
+}
+
+.dropdown-item:focus,
+.dropdown-item:active {
+    color: var(--accent);
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+.footer {
+    background-color: var(--footer-pink);
+    color: var(--dark-pink);
+    flex-shrink: 0;
+}
+.socials i {
+    color: var(--dark-pink);
+}
+
+@media(min-width: 992px) {
+    .navbar-nav {
+        background: #fff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        box-shadow: 5px 4px 4px rgba(85, 29, 83, 0.1);
+    }
+
+    .nav-link {
+        color: var(--accent) !important;
+        margin: 0 10px;
+        position: relative;
+    }
+
+    .nav-link:hover {
+        color: var(--accent) !important;
+        transform: scale(1.1);
+        transition: all 0.2s ease-in-out;
+    }
+}
+@media (min-width: 1920px) {
+    .navv .container, 
+    .navv .container-fluid {
+        display: flex !important;
+        justify-content: center !important; 
+        gap: 20px; 
+        max-width: 100%;
+    }
+    .navbar-collapse {
+        flex-grow: 0 !important; 
+    }
+    .navbar-brand, 
+    .cart-btn, 
+    .logo-btn {
+        margin: 0 !important;
+    }
+}
+@media (max-width: 989px) {
+    .navbar-toggler {
+        padding: 0.25rem;
+    }
+}
