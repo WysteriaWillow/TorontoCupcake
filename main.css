@@ -89,7 +89,7 @@ h6 {
     margin-top: 0;
 }
 .footer {
-    background-color: var(--footer-pink);
+    background-color: var(--footer-pink) ;
     color: var(--dark-pink);
     flex-shrink: 0;
 }

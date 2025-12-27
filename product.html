@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Cupcakes - Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        :root {
+            --accent: #ff2f8a;
+            --bg-pink: #FFDEF9;
+            --dark-pink: #53142f;
+            --pink: #f1227c;
+            --footer-pink: #FFB5D5;
+            --font-main: 'Lemonada', cursive, system-ui;
+            --nav-height: 70px;
+            /* Base height for desktop */
+        }
+
+        body {
+            background-color: var(--bg-pink);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        
+        
+        /* --- STICKY FILTER ROW FIXES --- */
+        .sticky-filter-row {
+            position: sticky;
+            top: var(--nav-height);
+            z-index: 1000;
+            background-color: var(--bg-pink);
+            padding: 5px 0 15px 0;
+            /* Reduced top padding to snap it up */
+            margin-top: 0 !important;
+        }
+
+        /* Specifically for mobile/tablets where nav height might change */
+        @media (max-width: 991.98px) {
+            .sticky-filter-row {
+                /* If your mobile nav is a different height, adjust this value */
+                top: 56px;
+            }
+
+            main .container {
+                padding-top: 0 !important;
+            }
+        }
+
+        /* Category & Search Styles */
+        .category-pill {
+            background: white;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 50px;
+            color: var(--pink);
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .category-pill.active {
+            background-color: var(--pink);
+            color: white;
+        }
+
+        .search-bar {
+            border-radius: 50px;
+            border: none;
+            padding: 5px 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Search Logic */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        #search-icon-btn {
+            background: white;
+            border: none;
+            color: var(--pink);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 992px) {
+            #cupcake-search {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 0;
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+                z-index: 10;
+            }
+
+            #cupcake-search.expanded {
+                width: 160px;
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            #search-icon-btn {
+                display: flex;
+            }
+
+            .category-pill {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Product Cards */
+        .cupcake-card {
+            background: white;
+            border-radius: 15px;
+            border: none;
+            position: relative;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(83, 20, 47, 0.05);
+        }
+
+        .cupcake-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cupcake-img {
+            width: 100%;
+            height: 130px;
+            object-fit: contain;
+            padding: 10px;
+            margin-top: 1rem;
+        }
+
+        .product-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .price-tag {
+            color: var(--pink);
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: block;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            color: var(--pink);
+            font-weight: bold;
+            width: 30px;
+            height: 30px;
+        }
+
+        .qty-input {
+            width: 30px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .btn-add {
+            background-color: #ff67a9;
+            color: var(--dark-pink);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 6px 0;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-add:hover {
+            background-color: #da1c6e !important;
+            color: white !important;
+        }
+
+        .badge-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: row; /* This puts them side-by-side */
+            flex-wrap: wrap;
+            gap: 5px;
+            z-index: 5;
+            
+        }
+
+        .custom-badge {
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-holiday {
+            background-color: #28a745;
+        }
+
+        .badge-popular {
+            background-color: #6f42c1;
+        }
+
+        .badge-special {
+            background-color: #ff8c00;
+        }
+
+        .badge-new {
+            background-color: #17a2b8;
+        }
+        .badge-classic {
+            background-color: #e73131;
+        }
+        .badge-bundle {
+            background-color: #ba2ddd;
+        }
+
+        #success-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: none;
+            z-index: 9999;
+        }
+
+        main .container {
+            padding-top: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="success-toast"><i class="fa fa-check-circle me-2"></i> Added Successfully!</div>
+
+    <nav class="navbar navbar-expand-lg navv">
+        <div class="container">
+            <a class="logo-btn btn btn-light" href="index.html">
+                <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
+            </a>
+            <div class="d-flex align-items-center gap-2 order-lg-last">
+                <a href="cart.html" class="btn cart-btn flex-shrink-0">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav my-3 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                        <ul class="dropdown-menu" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="blog.html">Blog</a></li>
+                            <li><a class="dropdown-item" href="community.html">Community</a></li>
+                            <li><a class="dropdown-item" href="event.html">Events</a></li>
+                            <li><a class="dropdown-item" href="location.html">Location</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container pt-0 mb-5">
+            <div class="row g-2 align-items-center sticky-filter-row flex-nowrap mx-0 mt-0">
+                <div class="col flex-grow-1 overflow-hidden">
+                    <div class="d-flex gap-2 overflow-auto pb-1" id="filter-buttons" style="scrollbar-width: none;">
+                        <button class="category-pill active" data-filter="all">All</button>
+                        <button class="category-pill" data-filter="classic">Classic</button>
+                        <button class="category-pill" data-filter="holiday">Holiday</button>
+                        <button class="category-pill" data-filter="special">Special</button>
+                        <button class="category-pill" data-filter="bundle">Bundle</button>
+                    </div>
+                </div>
+                <div class="col-auto search-container">
+                    <button id="search-icon-btn" onclick="toggleSearch()"><i class="fa fa-search"></i></button>
+                    <input type="text" id="cupcake-search" class="form-control search-bar" placeholder="Search...">
+                </div>
+            </div>
+
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mt-2" id="product-grid"></div>
+        </div>
+    </main>
+
+    <footer class="py-4 mt-auto" style="background: var(--footer-pink);">
+        <div class="container text-center">
+            <p class="mb-0 fw-bold text-dark-pink">Toronto Cupcake © 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        const productGrid = document.getElementById('product-grid');
+        const successToast = document.getElementById('success-toast');
+        const searchInput = document.getElementById('cupcake-search');
+
+        const data = {
+            classic: [
+                { name: "Chocolate Peanut Butter Cupcake", img: "ASSETS/products/daily/d1.webp", badge: "Classic", price: "4.50" },
+                { name: "Chocolate Hazelnut Cupcake", img: "ASSETS/products/daily/d2.webp", badge: ["Classic", "New"], price: "4.75" },
+                { name: "Chocolate Coconut Cupcake", img: "ASSETS/products/daily/d3.webp", badge: "Classic", price: "4.00" },
+                { name: "Chocolate Vanilla Cupcake", img: "ASSETS/products/daily/d4.webp", badge: ["Classic", "Popular"], price: "4.50" },
+                { name: "Chocolate Caramel Cupcake", img: "ASSETS/products/daily/d5.webp", badge: "Classic", price: "4.50" },
+                { name: "Hot Fudge Sundae Cupcake", img: "ASSETS/products/daily/d6.webp", badge: "Classic", price: "4.50" },
+                { name: "Chocolate Chocolate Ganache Cupcake", img: "ASSETS/products/daily/d7.webp", badge: "Classic", price: "4.50" },
+                { name: "Chocolate Oreo Cupcake", img: "ASSETS/products/daily/d8.webp", badge: "Classic", price: "4.50" },
+                { name: "Chocolate Toffee Cupcake", img: "ASSETS/products/daily/d9.webp", badge: "Classic", price: "4.50" },
+                { name: "Chocolate Vanilla Chocolate Ganache", img: "ASSETS/products/daily/d10.webp", badge: "Classic", price: "4.50" }
+            ],
+            holiday: [
+                { name: "Canada Day Cupcake", img: "ASSETS/products/holiday/h1.webp", badge: "Holiday", price: "5.25" },
+                { name: "Easter Cupcake", img: "ASSETS/products/holiday/h2.jpg", badge: "Holiday", price: "5.00" },
+                { name: "Pride Cupcake", img: "ASSETS/products/holiday/h3.jpg", badge: "Holiday", price: "5.25" },
+                { name: "St Patty's Day Cupcake", img: "ASSETS/products/holiday/h4.webp", badge: "Holiday", price: "5.25" }
+               
+            ],
+            special: [
+                { name: "Beaches Jazz Cupcake", img: "ASSETS/products/special/s1.jpg", badge: "Special", price: "4.20" },
+                { name: "Toronto Intl Film Festival Cupcake", img: "ASSETS/products/special/s2.jpg", badge: "Special", price: "4.90" },
+                { name: "Custom Cupcakes", img: "ASSETS/products/special/s3.jpg", badge: ["Special", "New"], price: "4.90" },
+                { name: "Just for Kids", img: "ASSETS/products/special/s4.webp", badge: "Special", price: "4.90" },
+                { name: "Elmo Cupcake", img: "ASSETS/products/special/s5.jpg", badge: "Special", price: "4.90" }
+            ],  
+            bundle: [
+                { name: "Assorted Dozen", img: "ASSETS/products/bundle/b1.webp", badge: "Bundle", price: "41.90" },
+                { name: "Christmas Dozen", img: "ASSETS/products/bundle/b2.webp", badge: "Bundle", price: "50.90" },
+                { name: "Valentine's Day Cupcake", img: "ASSETS/products/bundle/b3.webp", badge: "Bundle", price: "55.90" },
+                { name: "Mother's Day Dozen", img: "ASSETS/products/bundle/b4.webp", badge: "Bundle", price: "55.90" },
+                { name: "Mother's Day Half Dozen", img: "ASSETS/products/bundle/b5.webp", badge: "Bundle", price: "40.90" },
+            ]
+        };
+
+        function toggleSearch() {
+            searchInput.classList.toggle('expanded');
+            if (searchInput.classList.contains('expanded')) searchInput.focus();
+        }
+
+       function renderAll() {
+    let html = "";
+    Object.keys(data).forEach(cat => {
+        data[cat].forEach(item => {
+            // Logic to handle multiple badges or a single badge string
+            let badgesHtml = "";
+            if (Array.isArray(item.badge)) {
+                // If it's an array ["Classic", "Popular"]
+                badgesHtml = item.badge.map(b => 
+                    `<span class="custom-badge badge-${b.toLowerCase()}">${b}</span>`
+                ).join('');
+            } else if (item.badge && item.badge !== "") {
+                // If it's just a single string "New"
+                badgesHtml = `<span class="custom-badge badge-${item.badge.toLowerCase()}">${item.badge}</span>`;
+            }
+
+            html += `
+                <div class="col cupcake-item" data-category="${cat}">
+                    <div class="cupcake-card h-100 p-3">
+                        <div class="badge-container">
+                            ${badgesHtml}
+                        </div>
+                        <img src="${item.img}" class="cupcake-img">
+                        <div class="card-body p-0">
+                            <div class="product-name">${item.name}</div>
+                            <span class="price-tag">$${item.price}</span>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="updateQty(this, -1)">-</button>
+                                <input type="text" class="qty-input" value="1" readonly>
+                                <button class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="btn btn-add" onclick="showFeedback()">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>`;
+        });
+    });
+    productGrid.innerHTML = html;
+}
+
+        window.updateQty = (btn, change) => {
+            const input = btn.parentElement.querySelector('.qty-input');
+            let newVal = parseInt(input.value) + change;
+            input.value = newVal < 1 ? 1 : newVal;
+        };
+
+        window.showFeedback = () => {
+            successToast.style.display = "block";
+            setTimeout(() => successToast.style.display = "none", 2500);
+        };
+
+        function filterProducts() {
+            const activeCat = document.querySelector('.category-pill.active').dataset.filter;
+            const searchVal = searchInput.value.toLowerCase();
+            document.querySelectorAll('.cupcake-item').forEach(item => {
+                const catMatch = (activeCat === 'all' || item.dataset.category === activeCat);
+                const nameMatch = item.querySelector('.product-name').innerText.toLowerCase().includes(searchVal);
+                item.style.display = (catMatch && nameMatch) ? "block" : "none";
+            });
+        }
+
+        document.querySelectorAll('.category-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterProducts();
+            });
+        });
+
+        searchInput.addEventListener('input', filterProducts);
+        renderAll();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

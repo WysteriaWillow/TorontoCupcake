@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="main.css">
     <style>
+        :root {
+            --accent: #ff2f8a;
+            --bg-pink: #FFDEF9;
+            --dark-pink: #53142f;
+            --footer-pink: #FFB5D5;
+            --pink: #f1227c;
+            --font-main: 'Lemonada', cursive, system-ui;
+        }
+        
+
+        .footer {
+            background-color: var(--footer-pink) !important;
+        }
+
         .cart-item-img {
             width: 80px;
             height: 80px;
@@ -62,103 +76,145 @@
             color: var(--dark-pink);
             pointer-events: none;
         }
+
+        @media (min-width: 1920px) {
+
+            .navv .container,
+            .navv .container-fluid {
+                display: flex !important;
+                justify-content: space-between !important;
+                gap: 20px;
+                max-width: 100%;
+            }
+
+            .navbar-collapse {
+                flex-grow: 0 !important;
+            }
+
+            .navbar-brand,
+            .cart-btn,
+            .logo-btn {
+                margin: 0 !important;
+            }
+        }
+
+        @media (max-width: 989px) {
+            .navbar-toggler {
+                padding: 0.25rem;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="container d-flex align-items-center justify-content-between">
+    <nav class="navbar navbar-expand-lg navv">
+        <div class="container d-flex align-items-center">
 
-            <button onclick="smartBack()" class="btn btn-light back-btn d-flex align-items-center gap-2 back-btn">
+            <button onclick="smartBack()" class="btn btn-light back-btn d-flex align-items-center gap-2">
                 <i class="fa fa-arrow-left"></i>
             </button>
+
+            <a class="logo-btn btn btn-light" href="index.html">
+                <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
+            </a>
+
+        </div>
+    </nav>
+    <!-- <nav class="navbar">
+        <div class="container d-flex align-items-center justify-content-between">
+
+           
             <a class="logo-btn btn btn-light ms-auto" href="index.html">
                 <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
             </a>
         </div>
-    </nav>
+    </nav> -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12 pt-4">
-                <h1 class="display-5 fw-bold" style="color: var(--pink);">Shopping Cart</h1>
-            </div>
-
-            <div class="col-lg-8">
-                <div class="cart-container">
-                    <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
-                        <div class="d-flex align-items-center gap-3">
-                            <img src="ASSETS/c1.jpg" class="cart-item-img" alt="Cupcake">
-                            <div>
-                                <h5 class="mb-0 fw-bold">Cherry Chocolate</h5>
-                                <small class="text-muted">Classic Base</small>
-                            </div>
-                        </div>
-                        <div class="text-end">
-                            <p class="mb-2 fw-bold">$4.50</p>
-                            <div class="d-flex align-items-center justify-content-end gap-3">
-                                <div class="qty-selector d-flex align-items-center">
-                                    <button class="qty-btn minus-btn">-</button>
-                                    <input type="text" class="qty-input" value="1">
-                                    <button class="qty-btn plus-btn">+</button>
-                                </div>
-                                <button class="btn btn-sm text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
-                        <div class="d-flex align-items-center gap-3">
-                            <img src="ASSETS/c2.jpg" class="cart-item-img" alt="Cupcake">
-                            <div>
-                                <h5 class="mb-0 fw-bold">Strawberry Swirl</h5>
-                                <small class="text-muted">Vegan Option</small>
-                            </div>
-                        </div>
-                        <div class="text-end">
-                            <p class="mb-2 fw-bold">$4.50</p>
-                            <div class="d-flex align-items-center justify-content-end gap-3">
-                                <div class="qty-selector d-flex align-items-center">
-                                    <button class="qty-btn minus-btn">-</button>
-                                    <input type="text" class="qty-input" value="1">
-                                    <button class="qty-btn plus-btn">+</button>
-                                </div>
-                                <button class="btn btn-sm text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="product.html" class="text-decoration-none" style="color: var(--pink);">
-                        <i class="fa fa-arrow-left"></i> Continue Shopping
-                    </a>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 pt-4">
+                    <h1 class="display-5 fw-bold" style="color: var(--pink);">Shopping Cart</h1>
                 </div>
-            </div>
 
-            <div class="col-lg-4">
-                <div class="summary-box mt-lg-2">
-                    <h4 class="fw-bold mb-4">Order Summary</h4>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Subtotal</span>
-                        <span>$9.00</span>
+                <div class="col-lg-8">
+                    <div class="cart-container">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="ASSETS/c1.jpg" class="cart-item-img" alt="Cupcake">
+                                <div>
+                                    <h5 class="mb-0 fw-bold">Cherry Chocolate</h5>
+                                    <small class="text-muted">Classic Base</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <p class="mb-2 fw-bold">$4.50</p>
+                                <div class="d-flex align-items-center justify-content-end gap-3">
+                                    <div class="qty-selector d-flex align-items-center">
+                                        <button class="qty-btn minus-btn">-</button>
+                                        <input type="text" class="qty-input" value="1">
+                                        <button class="qty-btn plus-btn">+</button>
+                                    </div>
+                                    <button class="btn btn-sm text-danger p-0"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="ASSETS/c2.jpg" class="cart-item-img" alt="Cupcake">
+                                <div>
+                                    <h5 class="mb-0 fw-bold">Strawberry Swirl</h5>
+                                    <small class="text-muted">Vegan Option</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <p class="mb-2 fw-bold">$4.50</p>
+                                <div class="d-flex align-items-center justify-content-end gap-3">
+                                    <div class="qty-selector d-flex align-items-center">
+                                        <button class="qty-btn minus-btn">-</button>
+                                        <input type="text" class="qty-input" value="1">
+                                        <button class="qty-btn plus-btn">+</button>
+                                    </div>
+                                    <button class="btn btn-sm text-danger p-0"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="product.html" class="text-decoration-none" style="color: var(--pink);">
+                            <i class="fa fa-arrow-left"></i> Continue Shopping
+                        </a>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Delivery (GTA)</span>
-                        <span>$5.00</span>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="summary-box mt-lg-2">
+                        <h4 class="fw-bold mb-4">Order Summary</h4>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span>$9.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Delivery (GTA)</span>
+                            <span>$5.00</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4 fw-bold fs-5">
+                            <span>Total</span>
+                            <span>$14.00</span>
+                        </div>
+                        <a href="checkout.html" class="btn btn-pink w-100 py-3 shadow-sm text-decoration-none">Checkout
+                            Now</a>
                     </div>
-                    <hr>
-                    <div class="d-flex justify-content-between mb-4 fw-bold fs-5">
-                        <span>Total</span>
-                        <span>$14.00</span>
-                    </div>
-                    <a href="checkout.html" class="btn btn-pink w-100 py-3 shadow-sm text-decoration-none">Checkout
-                        Now</a>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
 
-    <footer id="section-4" class="footer py-5">
+    <footer id="section-4" class="footer py-5" style="background-color: #f1227c;">
         <div class="container text-center">
             <p class="mb-0 fw-bold">Toronto Cupcake © 2025</p>
         </div>
@@ -185,14 +241,14 @@
             });
         });
         function smartBack() {
-    // Check if there is a page to go back to
-    if (document.referrer.indexOf(window.location.host) !== -1) {
-        history.back();
-    } else {
-        // If they landed here directly, just send them to the home page
-        window.location.href = 'index.html';
-    }
-}
+            // Check if there is a page to go back to
+            if (document.referrer.indexOf(window.location.host) !== -1) {
+                history.back();
+            } else {
+                // If they landed here directly, just send them to the home page
+                window.location.href = 'index.html';
+            }
+        }
     </script>
 </body>
 
