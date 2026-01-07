@@ -9,270 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
-    <style>
-        :root {
-            --accent: #ff2f8a;
-            --bg-pink: #FFDEF9;
-            --dark-pink: #53142f;
-            --pink: #f1227c;
-            --footer-pink: #FFB5D5;
-            --font-main: 'Lemonada', cursive, system-ui;
-            --nav-height: 70px;
-            /* Base height for desktop */
-        }
-
-        body {
-            background-color: var(--bg-pink);
-            font-family: var(--font-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
-        }
-
-        main {
-            flex: 1 0 auto;
-        }
-
-        
-        
-        /* --- STICKY FILTER ROW FIXES --- */
-        .sticky-filter-row {
-            position: sticky;
-            top: var(--nav-height);
-            z-index: 1000;
-            background-color: var(--bg-pink);
-            padding: 5px 0 15px 0;
-            /* Reduced top padding to snap it up */
-            margin-top: 0 !important;
-        }
-
-        /* Specifically for mobile/tablets where nav height might change */
-        @media (max-width: 991.98px) {
-            .sticky-filter-row {
-                /* If your mobile nav is a different height, adjust this value */
-                top: 56px;
-            }
-
-            main .container {
-                padding-top: 0 !important;
-            }
-        }
-
-        /* Category & Search Styles */
-        .category-pill {
-            background: white;
-            border: none;
-            padding: 6px 18px;
-            border-radius: 50px;
-            color: var(--pink);
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 0.75rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .category-pill.active {
-            background-color: var(--pink);
-            color: white;
-        }
-
-        .search-bar {
-            border-radius: 50px;
-            border: none;
-            padding: 5px 20px;
-            font-size: 0.85rem;
-        }
-
-        /* Responsive Search Logic */
-        .search-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-
-        #search-icon-btn {
-            background: white;
-            border: none;
-            color: var(--pink);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @media (max-width: 992px) {
-            #cupcake-search {
-                position: absolute;
-                right: 0;
-                top: 0;
-                width: 0;
-                opacity: 0;
-                transition: all 0.3s ease;
-                pointer-events: none;
-                z-index: 10;
-            }
-
-            #cupcake-search.expanded {
-                width: 160px;
-                opacity: 1;
-                pointer-events: all;
-            }
-
-            #search-icon-btn {
-                display: flex;
-            }
-
-            .category-pill {
-                padding: 6px 12px;
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Product Cards */
-        .cupcake-card {
-            background: white;
-            border-radius: 15px;
-            border: none;
-            position: relative;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 10px rgba(83, 20, 47, 0.05);
-        }
-
-        .cupcake-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .cupcake-img {
-            width: 100%;
-            height: 130px;
-            object-fit: contain;
-            padding: 10px;
-            margin-top: 1rem;
-        }
-
-        .product-name {
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .price-tag {
-            color: var(--pink);
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: block;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .qty-btn {
-            background: none;
-            border: none;
-            color: var(--pink);
-            font-weight: bold;
-            width: 30px;
-            height: 30px;
-        }
-
-        .qty-input {
-            width: 30px;
-            text-align: center;
-            border: none;
-            background: transparent;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .btn-add {
-            background-color: #ff67a9;
-            color: var(--dark-pink);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            padding: 6px 0;
-            border: none;
-            width: 100%;
-        }
-
-        .btn-add:hover {
-            background-color: #da1c6e !important;
-            color: white !important;
-        }
-
-        .badge-container {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            display: flex;
-            flex-direction: row; /* This puts them side-by-side */
-            flex-wrap: wrap;
-            gap: 5px;
-            z-index: 5;
-            
-        }
-
-        .custom-badge {
-            font-size: 0.6rem;
-            padding: 2px 8px;
-            border-radius: 50px;
-            color: white;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .badge-holiday {
-            background-color: #28a745;
-        }
-
-        .badge-popular {
-            background-color: #6f42c1;
-        }
-
-        .badge-special {
-            background-color: #ff8c00;
-        }
-
-        .badge-new {
-            background-color: #17a2b8;
-        }
-        .badge-classic {
-            background-color: #e73131;
-        }
-        .badge-bundle {
-            background-color: #ba2ddd;
-        }
-
-        #success-toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #28a745;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            display: none;
-            z-index: 9999;
-        }
-
-        main .container {
-            padding-top: 0 !important;
-        }
-    </style>
+    <link rel="stylesheet" href="product.css">
 </head>
 
 <body>
@@ -305,159 +42,287 @@
                             <li><a class="dropdown-item" href="blog.html">Blog</a></li>
                             <li><a class="dropdown-item" href="community.html">Community</a></li>
                             <li><a class="dropdown-item" href="event.html">Events</a></li>
-                            <li><a class="dropdown-item" href="location.html">Location</a></li>
+                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Products</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Products</li>
+                </ol>
+            </nav>
+
+        </div>
+    </section>
 
     <main>
-        <div class="container pt-0 mb-5">
-            <div class="row g-2 align-items-center sticky-filter-row flex-nowrap mx-0 mt-0">
-                <div class="col flex-grow-1 overflow-hidden">
-                    <div class="d-flex gap-2 overflow-auto pb-1" id="filter-buttons" style="scrollbar-width: none;">
-                        <button class="category-pill active" data-filter="all">All</button>
-                        <button class="category-pill" data-filter="classic">Classic</button>
-                        <button class="category-pill" data-filter="holiday">Holiday</button>
-                        <button class="category-pill" data-filter="special">Special</button>
-                        <button class="category-pill" data-filter="bundle">Bundle</button>
+
+        <div class="sticky-filter-wrapper">
+            <div class="container">
+                <div class="row g-2 align-items-center sticky-filter-row flex-nowrap mx-0">
+                    <div class="col flex-grow-1 overflow-hidden">
+                        <div class="d-flex gap-2 overflow-auto pb-1" id="filter-buttons" style="scrollbar-width: none;">
+                            <button class="category-pill active" data-filter="all">All</button>
+                            <button class="category-pill" data-filter="classic">Classic</button>
+                            <button class="category-pill" data-filter="holiday">Holiday</button>
+                            <button class="category-pill" data-filter="special">Special</button>
+                            <button class="category-pill" data-filter="bundle">Bundle</button>
+                        </div>
+                    </div>
+                    <div class="col-auto search-container">
+                        <button id="search-icon-btn" onclick="toggleSearch()"><i class="fa fa-search"></i></button>
+                        <div class="search-input-wrapper">
+                            <input type="text" id="cupcake-search" class="form-control search-bar"
+                                placeholder="Search..." oninput="toggleClearBtn()">
+                            <button id="clear-search" class="clear-btn" onclick="clearSearch()"
+                                style="display: none;">&times;</button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-auto search-container">
-                    <button id="search-icon-btn" onclick="toggleSearch()"><i class="fa fa-search"></i></button>
-                    <input type="text" id="cupcake-search" class="form-control search-bar" placeholder="Search...">
+            </div>
+        </div>
+
+        <div class="container pt-0 mb-2">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mt-2" id="product-grid"></div>
+
+            <div class="row mt-5">
+                <div class="col-12 d-flex justify-content-center">
+                    <nav aria-label="Product pagination">
+                        <ul class="pagination custom-pagination" id="pagination-controls"></ul>
+                    </nav>
                 </div>
             </div>
-
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mt-2" id="product-grid"></div>
         </div>
     </main>
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4"
+                style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <div class="modal-body p-4">
+                    <div class="text-end">
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div id="modal-body-content">
+                    </div>
+                    <p class="text-muted small text-center mt-3 mb-0">Touch or click anywhere outside the card to close</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <footer class="py-4 mt-auto" style="background: var(--footer-pink);">
-        <div class="container text-center">
-            <p class="mb-0 fw-bold text-dark-pink">Toronto Cupcake © 2025</p>
+    <footer class="footer-container py-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-md-5 d-flex flex-column align-items-center align-items-md-end pe-md-5">
+                    <h5 class="fw-bold mb-3">Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-auto d-none d-md-block footer-divider"></div>
+
+                <div class="col-md-5 ps-md-5 mt-4 mt-md-0 text-center text-md-start">
+                    <p class="mb-1">123 Cupcake Lane, Toronto, ON M1A 2B3</p>
+                    <p class="mb-1 fw-bold">(416) 555-0123</p>
+                    <p class="mb-0">inquiry@torontocupcake.com</p>
+                </div>
+
+            </div>
         </div>
     </footer>
+    <button type="button" class="btn btn-pink shadow" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="bTtop.js"></script>
 
     <script>
-        const productGrid = document.getElementById('product-grid');
-        const successToast = document.getElementById('success-toast');
-        const searchInput = document.getElementById('cupcake-search');
 
         const data = {
             classic: [
-                { name: "Chocolate Peanut Butter Cupcake", img: "ASSETS/products/daily/d1.webp", badge: "Classic", price: "4.50" },
-                { name: "Chocolate Hazelnut Cupcake", img: "ASSETS/products/daily/d2.webp", badge: ["Classic", "New"], price: "4.75" },
-                { name: "Chocolate Coconut Cupcake", img: "ASSETS/products/daily/d3.webp", badge: "Classic", price: "4.00" },
-                { name: "Chocolate Vanilla Cupcake", img: "ASSETS/products/daily/d4.webp", badge: ["Classic", "Popular"], price: "4.50" },
-                { name: "Chocolate Caramel Cupcake", img: "ASSETS/products/daily/d5.webp", badge: "Classic", price: "4.50" },
-                { name: "Hot Fudge Sundae Cupcake", img: "ASSETS/products/daily/d6.webp", badge: "Classic", price: "4.50" },
-                { name: "Chocolate Chocolate Ganache Cupcake", img: "ASSETS/products/daily/d7.webp", badge: "Classic", price: "4.50" },
-                { name: "Chocolate Oreo Cupcake", img: "ASSETS/products/daily/d8.webp", badge: "Classic", price: "4.50" },
-                { name: "Chocolate Toffee Cupcake", img: "ASSETS/products/daily/d9.webp", badge: "Classic", price: "4.50" },
-                { name: "Chocolate Vanilla Chocolate Ganache", img: "ASSETS/products/daily/d10.webp", badge: "Classic", price: "4.50" }
+                { name: "Chocolate Peanut Butter Cupcake", img: "ASSETS/products/daily/d1.webp", badge: "Classic", price: "3.75", desc: "A chocolate cupcake with rich peanut butter frosting and a handmade PB cup wedge.", ingredients: "flour, milk, butter, sugar, eggs, cocoa powder, baking soda, vanilla extract. Icing: cream cheese, butter, icing sugar, peanut butter, vegetable oils." },
+                { name: "Chocolate Hazelnut Cupcake", img: "ASSETS/products/daily/d2.webp", badge: ["Classic", "New"], price: "3.75", desc: "A nutty delight featuring hazelnut-infused chocolate cake.", ingredients: "flour, sugar, cocoa, eggs, hazelnut spread, roasted hazelnuts, butter, milk." },
+                { name: "Chocolate Coconut Cupcake", img: "ASSETS/products/daily/d3.webp", badge: "Classic", price: "3.75", desc: "Dark chocolate cake topped with vanilla icing and shredded coconut.", ingredients: "flour, cocoa, sugar, butter, eggs, shredded coconut, vanilla extract." },
+                { name: "Chocolate Vanilla Cupcake", img: "ASSETS/products/daily/d4.webp", badge: ["Classic", "Popular"], price: "3.75", desc: "Classic chocolate cake with a smooth Madagascar vanilla frosting.", ingredients: "flour, milk, butter, sugar, eggs, cocoa powder, vanilla bean, icing sugar." },
+                { name: "Chocolate Caramel Cupcake", img: "ASSETS/products/daily/d5.webp", badge: "Classic", price: "3.75", desc: "Chocolate cake filled with caramel and topped with caramel buttercream.", ingredients: "flour, cocoa, butter, sugar, eggs, heavy cream, sea salt, caramel." },
+                { name: "Hot Fudge Sundae Cupcake", img: "ASSETS/products/daily/d6.webp", badge: "Classic", price: "3.75", desc: "A chocolate base topped with vanilla frosting, fudge, and a cherry.", ingredients: "flour, milk, cocoa, sugar, butter, hot fudge, sprinkles, maraschino cherry." },
+                { name: "Chocolate Chocolate Ganache Cupcake", img: "ASSETS/products/daily/d7.webp", badge: "Classic", price: "3.75", desc: "Double chocolate experience with a silky dark chocolate ganache.", ingredients: "flour, dark chocolate, cocoa powder, heavy cream, butter, sugar, eggs." },
+                { name: "Chocolate Oreo Cupcake", img: "ASSETS/products/daily/d8.webp", badge: "Classic", price: "3.75", desc: "Cookie-infused chocolate cake topped with Oreo buttercream.", ingredients: "flour, milk, cocoa, sugar, eggs, Oreo cookie pieces, cream cheese." },
+                { name: "Chocolate Toffee Cupcake", img: "ASSETS/products/daily/d9.webp", badge: "Classic", price: "3.75", desc: "Chocolate cake topped with crunchy toffee bits and caramel.", ingredients: "flour, cocoa, butter, sugar, eggs, toffee bits (almonds), corn syrup." },
+                { name: "Chocolate Vanilla Chocolate Ganache", img: "ASSETS/products/daily/d10.webp", badge: "Classic", price: "3.75", desc: "Chocolate cake with vanilla icing dipped in a chocolate shell.", ingredients: "flour, cocoa, milk, vanilla, semi-sweet chocolate, butter, sugar." }
             ],
             holiday: [
-                { name: "Canada Day Cupcake", img: "ASSETS/products/holiday/h1.webp", badge: "Holiday", price: "5.25" },
-                { name: "Easter Cupcake", img: "ASSETS/products/holiday/h2.jpg", badge: "Holiday", price: "5.00" },
-                { name: "Pride Cupcake", img: "ASSETS/products/holiday/h3.jpg", badge: "Holiday", price: "5.25" },
-                { name: "St Patty's Day Cupcake", img: "ASSETS/products/holiday/h4.webp", badge: "Holiday", price: "5.25" }
-               
+                { name: "Canada Day Cupcake", img: "ASSETS/products/holiday/h1.webp", badge: "Holiday", price: "3.75", desc: "Red and white festive cupcake to celebrate Canada Day.", ingredients: "flour, sugar, butter, eggs, red food coloring, vanilla bean, milk." },
+                { name: "Easter Cupcake", img: "ASSETS/products/holiday/h2.png", badge: "Holiday", price: "3.75", desc: "Spring vanilla cake with pastel frosting and mini chocolate eggs.", ingredients: "flour, sugar, butter, mini eggs (milk chocolate), vanilla extract." },
+                { name: "Pride Cupcake", img: "ASSETS/products/holiday/h3.png", badge: "Holiday", price: "3.75", desc: "Celebrate with our rainbow-layered vanilla cupcake.", ingredients: "flour, sugar, butter, eggs, assorted food coloring, sprinkles." },
+                { name: "St Patty's Day Cupcake", img: "ASSETS/products/holiday/h4.webp", badge: "Holiday", price: "3.75", desc: "Green velvet cake topped with a lucky shamrock.", ingredients: "flour, cocoa, buttermilk, butter, green coloring, vanilla, eggs." }
             ],
             special: [
-                { name: "Beaches Jazz Cupcake", img: "ASSETS/products/special/s1.jpg", badge: "Special", price: "4.20" },
-                { name: "Toronto Intl Film Festival Cupcake", img: "ASSETS/products/special/s2.jpg", badge: "Special", price: "4.90" },
-                { name: "Custom Cupcakes", img: "ASSETS/products/special/s3.jpg", badge: ["Special", "New"], price: "4.90" },
-                { name: "Just for Kids", img: "ASSETS/products/special/s4.webp", badge: "Special", price: "4.90" },
-                { name: "Elmo Cupcake", img: "ASSETS/products/special/s5.jpg", badge: "Special", price: "4.90" }
-            ],  
+                { name: "Beaches Jazz Cupcake", img: "ASSETS/products/special/s1.png", badge: "Special", price: "3.75", desc: "Blueberry lemon zest cupcake for jazz lovers.", ingredients: "flour, sugar, fresh blueberries, lemon zest, butter, eggs." },
+                { name: "Toronto Intl Film Festival Cupcake", img: "ASSETS/products/special/s2.png", badge: "Special", price: "3.75", desc: "Red carpet ready with dark chocolate and gold leaf.", ingredients: "flour, dark cocoa, sugar, butter, edible gold leaf, vanilla." },
+                { name: "Custom Cupcakes", img: "ASSETS/products/special/s3.png", badge: ["Special", "New"], price: "3.75", desc: "Your design, our delicious cake base.", ingredients: "Varies depending on custom selection." },
+                { name: "Just for Kids", img: "ASSETS/products/special/s4.png", badge: "Special", price: "3.75", desc: "Extra sprinkles and a surprise sweet center.", ingredients: "flour, sugar, butter, multi-color sprinkles, candy center." },
+                { name: "Elmo Cupcake", img: "ASSETS/products/special/s5.png", badge: "Special", price: "3.75", desc: "Red velvet Elmo face, perfect for birthdays.", ingredients: "flour, cocoa, red coloring, buttermilk, fondant decorations." }
+            ],
             bundle: [
-                { name: "Assorted Dozen", img: "ASSETS/products/bundle/b1.webp", badge: "Bundle", price: "41.90" },
-                { name: "Christmas Dozen", img: "ASSETS/products/bundle/b2.webp", badge: "Bundle", price: "50.90" },
-                { name: "Valentine's Day Cupcake", img: "ASSETS/products/bundle/b3.webp", badge: "Bundle", price: "55.90" },
-                { name: "Mother's Day Dozen", img: "ASSETS/products/bundle/b4.webp", badge: "Bundle", price: "55.90" },
-                { name: "Mother's Day Half Dozen", img: "ASSETS/products/bundle/b5.webp", badge: "Bundle", price: "40.90" },
+                { name: "Assorted Dozen", img: "ASSETS/products/bundle/b1.webp", badge: "Bundle", price: "41.50", desc: "A baker's choice of our 12 best-selling flavors.", ingredients: "Contains various allergens including nuts, dairy, and wheat." },
+                { name: "Christmas Dozen", img: "ASSETS/products/bundle/b2.webp", badge: "Bundle", price: "41.50", desc: "12 holiday-themed treats in a festive box.", ingredients: "Seasonal spices, chocolate, vanilla, and various colors." },
+                { name: "Valentine's Day Cupcake", img: "ASSETS/products/bundle/b3.webp", badge: "Bundle", price: "41.50", desc: "12 red and pink velvet cupcakes for your sweetheart.", ingredients: "Cocoa, buttermilk, red coloring, cream cheese icing." },
+                { name: "Mother's Day Dozen", img: "ASSETS/products/bundle/b4.webp", badge: "Bundle", price: "41.50", desc: "Elegant floral cupcakes to show Mom some love.", ingredients: "Rosewater, vanilla, sugar flowers, butter, milk, flour." },
+                { name: "Mother's Day Half-Dozen", img: "ASSETS/products/bundle/b5.webp", badge: "Bundle", price: "21.50", desc: "Elegant floral cupcakes to show Mom some love.", ingredients: "Rosewater, vanilla, sugar flowers, butter, milk, flour." }
             ]
         };
 
-        function toggleSearch() {
-            searchInput.classList.toggle('expanded');
-            if (searchInput.classList.contains('expanded')) searchInput.focus();
+        let currentPage = 1;
+        const itemsPerPage = 8;
+        let filteredItems = [];
+        const productGrid = document.getElementById('product-grid');
+        const paginationControls = document.getElementById('pagination-controls');
+        const searchInput = document.getElementById('cupcake-search');
+
+        const allProducts = [];
+        Object.keys(data).forEach(cat => {
+            data[cat].forEach(item => allProducts.push({ ...item, category: cat }));
+        });
+        window.openDetail = (index) => {
+            const item = filteredItems[index];
+            const modalBody = document.getElementById('modal-body-content');
+            modalBody.innerHTML = `
+            <h3 class="modal-title-custom text-center mb-3">${item.name}</h3>
+            <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
+                <img src="${item.img}" class="modal-cupcake-img" alt="Cupcake">
+            </div>
+            <p class="modal-desc"><strong>${item.desc}</strong></p>
+            <p class="modal-ingredients"><strong>Ingredients:</strong> ${item.ingredients}</p>
+            <div class="allergy-notice">
+                <strong>Toronto Cupcake is NOT a nut-free bakery.</strong> Our cupcakes may contain or come into contact with dairy, eggs, wheat, soybeans, tree nuts, or peanuts.
+            </div>
+        `;
+            const myModal = new bootstrap.Modal(document.getElementById('productModal'));
+            myModal.show();
+        };
+        function toggleClearBtn() {
+            const searchInput = document.getElementById('cupcake-search');
+            const clearBtn = document.getElementById('clear-search');
+            if (searchInput.value.length > 0) {
+                clearBtn.style.display = 'block';
+            } else {
+                clearBtn.style.display = 'none';
+            }
         }
 
-       function renderAll() {
-    let html = "";
-    Object.keys(data).forEach(cat => {
-        data[cat].forEach(item => {
-            // Logic to handle multiple badges or a single badge string
-            let badgesHtml = "";
-            if (Array.isArray(item.badge)) {
-                // If it's an array ["Classic", "Popular"]
-                badgesHtml = item.badge.map(b => 
-                    `<span class="custom-badge badge-${b.toLowerCase()}">${b}</span>`
-                ).join('');
-            } else if (item.badge && item.badge !== "") {
-                // If it's just a single string "New"
-                badgesHtml = `<span class="custom-badge badge-${item.badge.toLowerCase()}">${item.badge}</span>`;
+        function clearSearch() {
+            const searchInput = document.getElementById('cupcake-search');
+            const clearBtn = document.getElementById('clear-search');
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            searchInput.focus();
+            handleFilterAndSearch();
+        }
+        function toggleSearch() {
+            const searchInput = document.getElementById('cupcake-search');
+            const clearBtn = document.getElementById('clear-search');
+
+            searchInput.classList.toggle('expanded');
+
+            if (searchInput.classList.contains('expanded')) {
+                searchInput.focus();
+                toggleClearBtn(); 
+            } else {
+                clearBtn.style.display = 'none'; 
             }
+        }
 
-            html += `
-                <div class="col cupcake-item" data-category="${cat}">
-                    <div class="cupcake-card h-100 p-3">
-                        <div class="badge-container">
-                            ${badgesHtml}
-                        </div>
-                        <img src="${item.img}" class="cupcake-img">
-                        <div class="card-body p-0">
-                            <div class="product-name">${item.name}</div>
-                            <span class="price-tag">$${item.price}</span>
-                            <div class="quantity-control">
-                                <button class="qty-btn" onclick="updateQty(this, -1)">-</button>
-                                <input type="text" class="qty-input" value="1" readonly>
-                                <button class="qty-btn" onclick="updateQty(this, 1)">+</button>
-                            </div>
-                            <button class="btn btn-add" onclick="showFeedback()">Add to Cart</button>
-                        </div>
+        function handleFilterAndSearch() {
+            const activeCat = document.querySelector('.category-pill.active').dataset.filter;
+            const searchTerm = searchInput.value.toLowerCase();
+            filteredItems = allProducts.filter(item => {
+                const matchesCategory = (activeCat === 'all' || item.category === activeCat);
+                return matchesCategory && item.name.toLowerCase().includes(searchTerm);
+            });
+            currentPage = 1;
+            render();
+        }
+
+        function render() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredItems.slice(start, end);
+
+            let html = "";
+            pageItems.forEach((item, index) => {
+                let badges = Array.isArray(item.badge) ? item.badge : [item.badge];
+                let badgesHtml = badges.map(b => `<span class="custom-badge badge-${b.toLowerCase()}">${b}</span>`).join('');
+                html += `
+            <div class="col">
+                <div class="cupcake-card p-3" onclick="openDetail(${start + index})">
+                    <div class="badge-container">${badgesHtml}</div>
+                    <img src="${item.img}" class="cupcake-img">
+                    <div class="product-name">${item.name}</div>
+                    <span class="price-tag">$${item.price}</span>
+                    <div class="quantity-control" onclick="event.stopPropagation()">
+                        <button class="qty-btn" onclick="updateQty(this, -1)">-</button>
+                        <input type="number" class="qty-input" value="1" min="1" onchange="if(this.value < 1) this.value = 1;">
+                        <button class="qty-btn" onclick="updateQty(this, 1)">+</button>
                     </div>
-                </div>`;
-        });
-    });
-    productGrid.innerHTML = html;
-}
+                    <button class="btn btn-add" onclick="event.stopPropagation(); showFeedback()">Add to Cart</button>
+                </div>
+            </div>`;
+            });
+            productGrid.innerHTML = html || '<div class="col-12 text-center py-5">No cupcakes found.</div>';
+            renderPagination();
+        }
 
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            let html = "";
+            for (let i = 1; i <= totalPages; i++) {
+                html += `<li class="page-item ${i === currentPage ? 'active' : ''}">
+                    <button class="page-link" onclick="setPage(${i})">${i}</button></li>`;
+            }
+            paginationControls.innerHTML = totalPages > 1 ? html : "";
+        }
+
+        window.setPage = (p) => { currentPage = p; render(); window.scrollTo(0, 400); };
         window.updateQty = (btn, change) => {
             const input = btn.parentElement.querySelector('.qty-input');
-            let newVal = parseInt(input.value) + change;
-            input.value = newVal < 1 ? 1 : newVal;
+            let val = (parseInt(input.value) || 1) + change;
+            input.value = val < 1 ? 1 : val;
         };
-
         window.showFeedback = () => {
-            successToast.style.display = "block";
-            setTimeout(() => successToast.style.display = "none", 2500);
+            const toast = document.getElementById('success-toast');
+            toast.style.display = "block";
+            setTimeout(() => toast.style.display = "none", 2000);
         };
-
-        function filterProducts() {
-            const activeCat = document.querySelector('.category-pill.active').dataset.filter;
-            const searchVal = searchInput.value.toLowerCase();
-            document.querySelectorAll('.cupcake-item').forEach(item => {
-                const catMatch = (activeCat === 'all' || item.dataset.category === activeCat);
-                const nameMatch = item.querySelector('.product-name').innerText.toLowerCase().includes(searchVal);
-                item.style.display = (catMatch && nameMatch) ? "block" : "none";
-            });
-        }
 
         document.querySelectorAll('.category-pill').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active'));
+                document.querySelector('.category-pill.active').classList.remove('active');
                 btn.classList.add('active');
-                filterProducts();
+                handleFilterAndSearch();
             });
         });
 
-        searchInput.addEventListener('input', filterProducts);
-        renderAll();
+        searchInput.addEventListener('input', handleFilterAndSearch);
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container') && searchInput.classList.contains('expanded')) {
+                searchInput.classList.remove('expanded');
+            }
+        });
+
+        filteredItems = [...allProducts];
+        render();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

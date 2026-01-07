@@ -1,0 +1,130 @@
+:root {
+    --header-pink: #FFDEF9;
+    --dark-pink: #53142f;
+    --footer-pink: rgba(255, 222, 249, 0.95);
+    --pink: #f1227c;
+    --font-main: 'Lemonada', cursive, system-ui;
+    --bg-color: #fff;
+    --btn: #ffc1d6;
+    --card: #fff0f5;
+    --card-shadow: #f3c4d4;
+    --footer-light-pink: #f8d8e3;
+    --footer-dark-pink: #ffc1d6;
+}
+
+body {
+    font-family: 'Lemonada', sans-serif;
+    background-color: #fff9fa;
+    color: #444;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.post-container {
+    width: 100%;
+    margin: 0; 
+    background: white;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.post-img-standard {
+    width: 100%;
+    max-height: 600px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+    font-size: calc(1.8rem + 1.5vw);
+    line-height: 1.2;
+}
+
+.text-pink {
+    color: var(--pink);
+}
+
+/* Paragraph Justification */
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+}
+
+/* Comment Section Styles */
+.bg-pink { background-color: var(--pink) !important; }
+.bg-pink-light { background-color: var(--light-pink) !important; }
+.rounded-4 { border-radius: 1.5rem !important; }
+
+.btn-pink {
+    background-color: var(--pink);
+    border: none;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-pink:hover {
+    background-color: var(--dark-pink);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.post-header {
+    display: flex;
+    flex-direction: column;
+}
+.next-card:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* TARGET: SCREENS BELOW 738px */
+@media (max-width: 738px) {
+    .post-container {
+        padding: 20px;
+    }
+
+    /* Keep Navigation pinned to the left */
+    nav.blog-nav {
+        text-align: left !important;
+        width: 100%;
+        display: block;
+    }
+
+    /* Center only the Headings and Meta Info */
+    h1, h3, h4, .post-meta {
+        text-align: center !important;
+        justify-content: center !important;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* Paragraph Justification */
+    .content p, .text-justify p {
+        text-align: justify !important;
+        text-justify: inter-word;
+    }
+}
+
+/* Back to top button */
+#btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    z-index: 1000;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+}

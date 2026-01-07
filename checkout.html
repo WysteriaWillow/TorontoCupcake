@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,15 +12,28 @@
     <link rel="stylesheet" href="main.css">
     <style>
         :root {
-            --pink: #d63384; 
-            --dark-pink: #851d53;
-            --bg-pink: #fff0f6;
+            --header-pink: #FFDEF9;
+            --dark-pink: #53142f;
+            --footer-pink: rgba(255, 222, 249, 0.95);
+            --pink: #f1227c;
+            --font-main: 'Lemonada', cursive, system-ui;
+            --bg-color: #fff;
+            --btn: #ffc1d6;
+            --card: #fff0f5;
+            --card-shadow: #f3c4d4;
+            --footer-light-pink: #f8d8e3;
+            --footer-dark-pink: #ffc1d6;
         }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
         .checkout-container {
             background: white;
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         .form-label {
@@ -30,6 +44,8 @@
         }
 
         .form-control {
+            color: var(--pink) !important;
+            font-weight: 500;
             border-radius: 8px;
             border: 1px solid #dee2e6;
             padding: 0.6rem 1rem;
@@ -37,7 +53,8 @@
 
         .form-control:focus {
             border-color: var(--pink);
-            box-shadow: 0 0 0 0.25 row rgba(214, 51, 132, 0.1);
+            box-shadow: 0 0 0 0.25rem rgba(214, 51, 132, 0.1);
+            outline: none;
         }
 
         .step-header {
@@ -45,12 +62,14 @@
             margin-bottom: 1.5rem;
             color: #222;
         }
+
         .payment-methods-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             margin-bottom: 20px;
         }
+
         .payment-tile {
             display: flex;
             flex-direction: column;
@@ -62,6 +81,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             background: #fff;
+            text-align: center;
         }
 
         .payment-tile i {
@@ -69,33 +89,17 @@
             margin-bottom: 4px;
         }
 
-        input[type="radio"]:checked + .payment-tile {
-            border: 2px solid #4a6cf7; /* Blue accent like image */
-            background-color: #f0f4ff;
+        input[type="radio"]:checked+.payment-tile {
+            border: 2px solid var(--pink);
+            background-color: #fff0f5;
+            color: var(--pink);
         }
 
-        /* Order Summary Box */
         .summary-box {
             background: white;
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .btn-pay {
-            background-color: #ff2f8a; /* Professional blue from image */
-            color: white;
-            font-weight: 600;
-            border-radius: 8px;
-            padding: 12px;
-            border: none;
-            width: 100%;
-            transition: background 0.3s;
-        }
-
-        .btn-pay:hover {
-            background-color: #610039;
-            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         .secure-badge {
@@ -107,184 +111,278 @@
             font-size: 0.85rem;
             margin-top: 1.5rem;
         }
+
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 450px) {
+
+            .checkout-container,
+            .summary-box {
+                padding: 1.25rem;
+            }
+
+            .payment-methods-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-header {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .summary-box.sticky-top {
+                position: relative !important;
+                top: 0 !important;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .cart-item-img {
+                width: 60px !important;
+                height: 60px !important;
+            }
+
+            .breadcrumb {
+                font-size: 0.75rem;
+                flex-wrap: wrap;
+            }
+
+        }
     </style>
 </head>
+
 <body>
-   <nav class="navbar">
-    <div class="container d-flex align-items-center justify-content-between">
-        
-         <button onclick="smartBack()" class="btn btn-light back-btn d-flex align-items-center gap-2 back-btn">
+    <nav class="navbar sticky-top" style="background-color: rgba(255, 222, 249, 0.95); backdrop-filter: blur(10px); z-index: 1030;">
+        <div class="container d-flex align-items-center justify-content-between">
+            <button onclick="smartBack()" class="btn btn-light back-btn d-flex align-items-center gap-2">
                 <i class="fa fa-arrow-left"></i>
-        </button>
-        <a class="logo-btn btn btn-light ms-auto" href="index.html">
-            <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
-        </a>
-    </div>
-</nav>
+            </button>
+            <a class="logo-btn btn btn-light ms-auto" href="index.html">
+                <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
+            </a>
+        </div>
+    </nav>
 
-    <div class="container mt-5">
-        <div class="row g-4">
-            <div class="col-lg-7">
-                <div class="checkout-container">
-                    <form id="checkoutForm">
-                        <h4 class="step-header fw-bold">Shipping Information</h4>
-                        
-                        <div class="row g-3 mb-4">
-                            <div class="col-12">
-                                <label class="form-label">Full name *</label>
-                                <input type="text" class="form-control" placeholder="Enter full name" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email address *</label>
-                                <input type="email" class="form-control" placeholder="Enter email address" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Phone number *</label>
-                                <input type="tel" class="form-control" placeholder="Enter phone number" required>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Delivery Address *</label>
-                                <input type="text" class="form-control" placeholder="123 GTA Street" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">City</label>
-                                <input type="text" class="form-control" value="Toronto" readonly>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">State</label>
-                                <input type="text" class="form-control" value="Ontario" readonly>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Postal Code</label>
-                                <input type="text" class="form-control" placeholder="M1A 2B3" required>
-                            </div>
-                        </div>
+    <main class="container mt-3">
+        <nav aria-label="breadcrumb" class="d-flex ps-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="product.html">Product</a></li>
+                <li class="breadcrumb-item"><a href="cart.html">Cart</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+            </ol>
+        </nav>
+        <div class="container mt-4 mb-5">
+            <div class="row g-4">
+                <div class="col-lg-7">
+                    <div class="checkout-container">
+                        <form id="checkoutForm" onsubmit="handleCheckout(event)">
+                            <h4 class="step-header fw-bold">Shipping Information</h4>
 
-                        <h4 class="step-header fw-bold border-top pt-4">Payment Method</h4>
-                        <div class="payment-methods-grid">
-                            <input type="radio" name="paymentMethod" id="methodCard" value="card" checked hidden>
-                            <label for="methodCard" class="payment-tile">
-                                <i class="fas fa-credit-card"></i>
-                                <span class="small fw-bold">Card</span>
-                            </label>
-
-                            <input type="radio" name="paymentMethod" id="methodCash" value="cash" hidden>
-                            <label for="methodCash" class="payment-tile">
-                                <i class="fas fa-money-bill-wave"></i>
-                                <span class="small fw-bold">Cash</span>
-                            </label>
-
-                            <input type="radio" name="paymentMethod" id="methodBank" value="bank" hidden>
-                            <label for="methodBank" class="payment-tile">
-                                <i class="fas fa-university"></i>
-                                <span class="small fw-bold">Bank</span>
-                            </label>
-                        </div>
-
-                        <div id="cardDetailsForm" class="row g-3">
-                            <div class="col-12">
-                                <label class="form-label">Cardholder Name</label>
-                                <input type="text" class="form-control" placeholder="Name on card">
+                            <div class="row g-3 mb-4">
+                                <div class="col-12">
+                                    <label class="form-label">Full name *</label>
+                                    <input type="text" id="form-name" class="form-control" placeholder="Enter full name"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email address *</label>
+                                    <input type="email" id="form-email" class="form-control"
+                                        placeholder="Enter email address" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone number *</label>
+                                    <input type="tel" id="form-phone" class="form-control"
+                                        placeholder="Enter phone number" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Delivery Address *</label>
+                                    <input type="text" id="form-address" class="form-control"
+                                        placeholder="123 GTA Street" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" value="Toronto" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" value="Ontario" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Postal Code</label>
+                                    <input type="text" id="form-post" class="form-control" placeholder="M1A 2B3"
+                                        required>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">Card Number</label>
-                                <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Expiry Date</label>
-                                <input type="text" class="form-control" placeholder="MM/YY">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">CVV</label>
-                                <input type="text" class="form-control" placeholder="123">
-                            </div>
-                        </div>
 
-                        <div id="paymentMessage" class="col-12 d-none mt-3">
-                            <div class="alert alert-info border-0 rounded-3">
-                                <p class="mb-0 small" id="messageText"></p>
-                            </div>
-                        </div>
+                            <h4 class="step-header fw-bold border-top pt-4">Payment Method</h4>
+                            <div class="payment-methods-grid">
+                                <input type="radio" name="paymentMethod" id="methodCard" value="card" checked hidden>
+                                <label for="methodCard" class="payment-tile">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span class="small fw-bold">Card</span>
+                                </label>
 
-                        <div class="form-check mt-4">
-                            <input class="form-check-input" type="checkbox" id="terms" required>
-                            <label class="form-check-label small text-muted" for="terms">
-                                I have read and agree to the Terms and Conditions.
-                            </label>
-                        </div>
-                    </form>
+                                <input type="radio" name="paymentMethod" id="methodCash" value="cash" hidden>
+                                <label for="methodCash" class="payment-tile">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span class="small fw-bold">Cash</span>
+                                </label>
+
+                                <input type="radio" name="paymentMethod" id="methodBank" value="bank" hidden>
+                                <label for="methodBank" class="payment-tile">
+                                    <i class="fas fa-university"></i>
+                                    <span class="small fw-bold">Bank</span>
+                                </label>
+                            </div>
+
+                            <div id="cardDetailsForm" class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label">Cardholder Name</label>
+                                    <input type="text" id="form-cardname" class="form-control"
+                                        placeholder="Name on card">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Card Number</label>
+                                    <input type="text" id="form-cardnum" class="form-control"
+                                        placeholder="0000 0000 0000 0000">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Expiry Date</label>
+                                    <input type="text" id="form-expiry" class="form-control" placeholder="MM/YY">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">CVV</label>
+                                    <input type="text" id="form-cvv" class="form-control" placeholder="123">
+                                </div>
+                            </div>
+
+                            <div id="paymentMessage" class="col-12 d-none mt-3">
+                                <div class="alert alert-info border-0 rounded-3">
+                                    <p class="mb-0 small" id="messageText"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-check mt-4">
+                                <input class="form-check-input" type="checkbox" id="terms" checked required>
+                                <label class="form-check-label small text-muted" for="terms">
+                                    I have read and agree to the Terms and Conditions.
+                                </label>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-5">
-                <div class="summary-box sticky-top" style="top: 20px;">
-                    <h4 class="fw-bold mb-4">Review your cart</h4>
-                    
-                    <div class="cart-items-preview mb-4">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="d-flex align-items-center gap-3">
-                                <img src="ASSETS/c1.jpg" alt="Item" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
-                                <div>
-                                    <p class="mb-0 fw-bold small">Cherry Chocolate</p>
-                                    <span class="text-muted small">1x</span>
+                <div class="col-lg-5">
+                    <div class="summary-box sticky-top" style="top: 20px;">
+                        <h4 class="fw-bold mb-4">Review your cart</h4>
+
+                        <div class="cart-items-preview mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="ASSETS/c1.jpg" alt="Item"
+                                        style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                                    <div>
+                                        <p class="mb-0 fw-bold small">Cherry Chocolate</p>
+                                        <span class="text-muted small">1x</span>
+                                    </div>
                                 </div>
+                                <span class="fw-bold small">$4.50</span>
                             </div>
-                            <span class="fw-bold small">$4.50</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="d-flex align-items-center gap-3">
-                                <img src="ASSETS/c2.jpg" alt="Item" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
-                                <div>
-                                    <p class="mb-0 fw-bold small">Strawberry Swirl</p>
-                                    <span class="text-muted small">1x</span>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="ASSETS/c2.jpg" alt="Item"
+                                        style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                                    <div>
+                                        <p class="mb-0 fw-bold small">Strawberry Swirl</p>
+                                        <span class="text-muted small">1x</span>
+                                    </div>
                                 </div>
+                                <span class="fw-bold small">$4.50</span>
                             </div>
-                            <span class="fw-bold small">$4.50</span>
                         </div>
-                    </div>
 
-                    <div class="price-breakdown border-top pt-3">
-                        <div class="d-flex justify-content-between mb-2 text-muted small">
-                            <span>Subtotal</span>
-                            <span>$9.00</span>
+                        <div class="price-breakdown border-top pt-3">
+                            <div class="d-flex justify-content-between mb-2 text-muted small">
+                                <span>Subtotal</span>
+                                <span>$9.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 text-muted small">
+                                <span>Shipping</span>
+                                <span>$5.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3 fw-bold fs-5">
+                                <span>Total</span>
+                                <span>$14.00</span>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between mb-2 text-muted small">
-                            <span>Shipping</span>
-                            <span>$5.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-3 fw-bold fs-5">
-                            <span>Total</span>
-                            <span>$14.00</span>
-                        </div>
-                    </div>
 
-                    <button type="submit" form="checkoutForm" class="btn-pay">
-                        Pay Now
-                    </button>
+                        <button type="submit" form="checkoutForm" id="pay-btn" class="btn btn-pink w-100">
+                            Pay Now
+                        </button>
 
-                    <div class="secure-badge">
-                        <i class="fas fa-lock"></i>
-                        <div class="text-start">
-                            <div class="fw-bold" style="font-size: 0.75rem; line-height: 1;">Secure Checkout - SSL Encrypted</div>
-                            <div style="font-size: 0.65rem;">Ensuring your financial details are secure.</div>
+                        <div class="secure-badge">
+                            <i class="fas fa-lock"></i>
+                            <div class="text-start">
+                                <div class="fw-bold" style="font-size: 0.75rem; line-height: 1;">Secure Checkout - SSL
+                                    Encrypted</div>
+                                <div style="font-size: 0.65rem;">Ensuring your financial details are secure.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </main>
+
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-5">
+                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                <h3 class="fw-bold">Order Placed!</h3>
+                <p class="text-muted">Thank you for your purchase. Your cupcakes are being prepared for delivery.</p>
+                <button type="button" class="btn btn-pink w-100 mt-3" onclick="window.location.href='index.html'">Return
+                    to Home</button>
+            </div>
+        </div>
     </div>
 
-    <footer id="section-4" class="footer py-5">
+    <footer class="py-4 mt-auto" style="background: var(--footer-pink);">
         <div class="container text-center">
-            <p class="mb-0 fw-bold">Toronto Cupcake © 2025</p>
+            <p class="mb-0 fw-bold text-dark-pink">Toronto Cupcake © 2025</p>
         </div>
     </footer>
+    <button type="button" class="btn btn-pink shadow" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bTtop.js"></script>
     <script>
-        // Payment Method Toggle
+        window.onload = function () {
+            document.getElementById('form-name').value = "John Doe";
+            document.getElementById('form-email').value = "john@example.com";
+            document.getElementById('form-phone').value = "416-555-0123";
+            document.getElementById('form-address').value = "123 Queen Street West";
+            document.getElementById('form-post').value = "M5H 2N2";
+            document.getElementById('form-cardname').value = "JOHN DOE";
+            document.getElementById('form-cardnum').value = "4532 1122 3344 5566";
+            document.getElementById('form-expiry').value = "12/26";
+            document.getElementById('form-cvv').value = "123";
+        };
         document.querySelectorAll('input[name="paymentMethod"]').forEach((input) => {
-            input.addEventListener('change', function() {
+            input.addEventListener('change', function () {
                 const cardForm = document.getElementById('cardDetailsForm');
                 const messageBox = document.getElementById('paymentMessage');
                 const messageText = document.getElementById('messageText');
@@ -295,7 +393,7 @@
                 } else {
                     cardForm.classList.add('d-none');
                     messageBox.classList.remove('d-none');
-                    
+
                     if (this.value === 'cash') {
                         messageText.innerText = "Please have the exact amount ready for the delivery driver.";
                     } else if (this.value === 'bank') {
@@ -304,15 +402,31 @@
                 }
             });
         });
+
+        function handleCheckout(event) {
+            event.preventDefault();
+            const btn = document.getElementById('pay-btn');
+
+            // Step 1: Loading State (Feedback)
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Processing...';
+
+            // Step 2: Simulate Server Processing
+            setTimeout(() => {
+                // Step 3: Show Success Modal
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+            }, 2000);
+        }
+
         function smartBack() {
-    // Check if there is a page to go back to
-    if (document.referrer.indexOf(window.location.host) !== -1) {
-        history.back();
-    } else {
-        // If they landed here directly, just send them to the home page
-        window.location.href = 'index.html';
-    }
-}
+            if (document.referrer.indexOf(window.location.host) !== -1) {
+                history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
     </script>
 </body>
+
 </html>

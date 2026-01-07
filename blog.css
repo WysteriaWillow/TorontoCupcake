@@ -1,0 +1,189 @@
+:root {
+    --header-pink: #FFDEF9;
+    --dark-pink: #53142f;
+    --footer-pink: rgba(255, 222, 249, 0.95);
+    --pink: #f1227c;
+    --font-main: 'Lemonada', cursive, system-ui;
+    --bg-color: #fff;
+    --btn: #ffc1d6;
+    --card: #fff0f5;
+    --card-shadow: #f3c4d4;
+    --footer-light-pink: #f8d8e3;
+    --footer-dark-pink: #ffc1d6;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    margin: 0;
+}
+main {
+    flex: 1 0 auto; 
+}
+.text-pink {
+    color: var(--pink);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.text-pink:hover {
+    color: var(--dark-pink);
+}
+.feature-badge{
+    color: var(--pink);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.blog-card,
+.featured-card {
+    cursor: pointer;
+}
+
+
+.text-justify {
+    text-align: justify !important;
+    text-justify: inter-word;
+}
+
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+    justify-content: space-between;
+}
+
+
+.blog-header {
+    background: linear-gradient(rgba(255, 255, 255, 0.192), rgb(255, 255, 255)), url('ASSETS/sprinkles2.png') no-repeat center / cover;
+    padding: 8rem 1rem;
+    color: var(--dark-pink);
+    text-align: center;
+    margin-bottom: 0;
+}
+
+
+.blog-header h1 {
+    color: var(--dark-pink);
+    font-weight: 900;
+    font-size: calc(2.5rem + 1.5vw);
+}
+
+
+.img-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+
+.blog-card:hover img {
+    transform: scale(1.05);
+}
+
+
+.featured-card {
+    border: none;
+    border-radius: 25px;
+    overflow: hidden;
+    background: var(--card);
+    box-shadow: 6px 5px 0 var(--card-shadow);
+    transition: 0.3s;
+
+}
+
+
+.blog-card {
+    border: none;
+    border-radius: 25px;
+    background: var(--card);
+    box-shadow: 6px 5px 0 var(--card-shadow);
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 6px 5px 0 var(--card-shadow);
+}
+
+.category-badge {
+    background: var(--btn);
+    color: var(--pink);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+
+.btn-pink {
+    background-color: var(--pink);
+    color: white;
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border: none;
+}
+
+
+.btn-pink:hover {
+    background-color: var(--dark-pink);
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+    .featured-card {
+        box-shadow: 8px 8px 0px var(--footer-pink);
+    }
+
+
+    .text-justify {
+        text-align: left;
+    }
+
+    .blog-header {
+    padding: 40px 0 60px 0;
+    }
+}
+@media (max-width: 419px) {
+   /* Target the container inside main for better results */
+   main.container {
+    padding-left: 1.5rem !important; 
+    padding-right: 1.5rem !important;
+   }
+
+   /* This ensures the inner cards don't touch the very edge */
+   .featured-card, .blog-card {
+    margin-left: 0;
+    margin-right: 0;
+   }
+   .feature-badge{
+    font-size: 1rem;
+   }
+}

@@ -12,18 +12,19 @@
     <link rel="stylesheet" href="main.css">
     <style>
         :root {
-            --accent: #ff2f8a;
-            --bg-pink: #FFDEF9;
+            --header-pink: #FFDEF9;
             --dark-pink: #53142f;
-            --footer-pink: #FFB5D5;
+            --footer-pink: rgba(255, 222, 249, 0.95);
             --pink: #f1227c;
             --font-main: 'Lemonada', cursive, system-ui;
+            --bg-color: #fff;
+            --btn: #ffc1d6;
+            --card: #fff0f5;
+            --card-shadow: #f3c4d4;
+            --footer-light-pink: #f8d8e3;
+            --footer-dark-pink: #ffc1d6;
         }
         
-
-        .footer {
-            background-color: var(--footer-pink) !important;
-        }
 
         .cart-item-img {
             width: 80px;
@@ -74,63 +75,172 @@
             width: 40px;
             font-weight: 700;
             color: var(--dark-pink);
-            pointer-events: none;
+
         }
 
-        @media (min-width: 1920px) {
-
-            .navv .container,
-            .navv .container-fluid {
-                display: flex !important;
-                justify-content: space-between !important;
-                gap: 20px;
-                max-width: 100%;
-            }
-
-            .navbar-collapse {
-                flex-grow: 0 !important;
-            }
-
-            .navbar-brand,
-            .cart-btn,
-            .logo-btn {
-                margin: 0 !important;
-            }
+        .qty-input::-webkit-outer-spin-button,
+        .qty-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
 
-        @media (max-width: 989px) {
-            .navbar-toggler {
-                padding: 0.25rem;
-            }
+        .qty-input[type=number] {
+            -moz-appearance: textfield;
         }
+
+        .text-pink {
+            color: var(--pink) !important;
+        }
+
+        #confirmDeleteBtn:hover {
+            background-color: #d61a6b;
+        }
+
+        /* RESPONSIVE FIX FOR 450PX AND BELOW */
+        @media (max-width: 450px) {
+        .cart-container {
+        padding: 0.8rem !important;
+        margin-top: 1rem;
+    }
+
+    /* Stack the cart item row elements vertically */
+    .cart-item-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+        gap: 10px;
+        padding-bottom: 1.5rem !important;
+    }
+
+    /* Shrink the image so it doesn't dominate the small screen */
+    .cart-item-img {
+        width: 70px !important;
+        height: 70px !important;
+    }
+
+    /* Ensure item info takes full width */
+    .cart-item-info {
+        width: 100%;
+    }
+
+    /* Align controls (price, qty, trash) in a neat row or stack */
+    .cart-item-controls {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center !important;
+        border-top: 1px dashed rgba(83, 20, 47, 0.1);
+        padding-top: 10px;
+    }
+
+    /* Adjust the quantity selector width for very narrow screens */
+    .qty-selector {
+        width: 100px;
+        margin-bottom: 8px;
+    }
+
+    /* Scale down the typography */
+    .display-5 {
+        font-size: 1.5rem !important;
+        text-align: center;
+    }
+
+    h5{
+        font-size: 0.8rem;
+        text-align: left;
+    }
+    small{
+        text-align: left;
+    }
+
+    /* Summary Box adjustments */
+    .summary-box {
+        padding: 1rem !important;
+        margin-top: 1.5rem;
+    }
+
+    .fs-5 {
+        font-size: 1.1rem !important;
+    }
+        }
+    @media (max-width: 360px) {
+    .cart-item-img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .breadcrumb {
+        font-size: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-pink {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+}
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navv">
-        <div class="container d-flex align-items-center">
-
+    <nav class="navbar sticky-top" style="background-color: rgba(255, 222, 249, 0.95); backdrop-filter: blur(10px)">
+        <div class="container d-flex align-items-center justify-content-between">
             <button onclick="smartBack()" class="btn btn-light back-btn d-flex align-items-center gap-2">
                 <i class="fa fa-arrow-left"></i>
             </button>
-
-            <a class="logo-btn btn btn-light" href="index.html">
-                <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
-            </a>
-
-        </div>
-    </nav>
-    <!-- <nav class="navbar">
-        <div class="container d-flex align-items-center justify-content-between">
-
-           
             <a class="logo-btn btn btn-light ms-auto" href="index.html">
                 <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
             </a>
         </div>
-    </nav> -->
+    </nav>
 
-    <main>
+    <main class="container mt-3">
+        <nav aria-label="breadcrumb" class="d-flex ps-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="product.html">Product</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+            </ol>
+        </nav>
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 20px;">
+                    <div class="modal-body text-center p-4">
+                        <i class="fa-solid fa-circle-exclamation fa-3x mb-3" style="color: var(--pink);"></i>
+                        <h4 class="fw-bold">Are you sure?</h4>
+                        <p class="text-muted">Do you really want to remove this delicious cupcake from your cart?</p>
+                        <div class="d-flex gap-2 justify-content-center mt-4">
+                            <button type="button" class="btn btn-pink px-4" id="confirmDeleteBtn"
+                                style="margin-bottom:0;">Yes, Delete</button>
+                            <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal"
+                                style="border-radius: 10px;">Cancel</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingOverlay"
+            style="display:none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
+            <div class="spinner-border text-pink" role="status" style="color: var(--pink); width: 3rem; height: 3rem;">
+            </div>
+            <p class="mt-3 fw-bold" style="color: var(--pink);">Updating Cart...</p>
+        </div>
+
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="successToast" class="toast align-items-center text-white bg-success border-0" role="alert"
+                aria-live="assertive" aria-atomic="true" style="border-radius: 12px;">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fa-solid fa-check-circle me-2"></i> Item deleted successfully!
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-12 pt-4">
@@ -139,20 +249,21 @@
 
                 <div class="col-lg-8">
                     <div class="cart-container">
-                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
-                            <div class="d-flex align-items-center gap-3">
+                        <div
+                            class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3 cart-item-row">
+                            <div class="d-flex align-items-center gap-3 cart-item-info">
                                 <img src="ASSETS/c1.jpg" class="cart-item-img" alt="Cupcake">
                                 <div>
                                     <h5 class="mb-0 fw-bold">Cherry Chocolate</h5>
                                     <small class="text-muted">Classic Base</small>
                                 </div>
                             </div>
-                            <div class="text-end">
+                            <div class="text-end cart-item-controls">
                                 <p class="mb-2 fw-bold">$4.50</p>
                                 <div class="d-flex align-items-center justify-content-end gap-3">
                                     <div class="qty-selector d-flex align-items-center">
                                         <button class="qty-btn minus-btn">-</button>
-                                        <input type="text" class="qty-input" value="1">
+                                        <input type="number" class="qty-input" value="1" min="1">
                                         <button class="qty-btn plus-btn">+</button>
                                     </div>
                                     <button class="btn btn-sm text-danger p-0"><i
@@ -161,20 +272,21 @@
                             </div>
                         </div>
 
-                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
-                            <div class="d-flex align-items-center gap-3">
+                        <div
+                            class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3 cart-item-row">
+                            <div class="d-flex align-items-center gap-3 cart-item-info">
                                 <img src="ASSETS/c2.jpg" class="cart-item-img" alt="Cupcake">
                                 <div>
                                     <h5 class="mb-0 fw-bold">Strawberry Swirl</h5>
                                     <small class="text-muted">Vegan Option</small>
                                 </div>
                             </div>
-                            <div class="text-end">
+                            <div class="text-end cart-item-controls">
                                 <p class="mb-2 fw-bold">$4.50</p>
                                 <div class="d-flex align-items-center justify-content-end gap-3">
                                     <div class="qty-selector d-flex align-items-center">
                                         <button class="qty-btn minus-btn">-</button>
-                                        <input type="text" class="qty-input" value="1">
+                                        <input type="number" class="qty-input" value="1" min="1">
                                         <button class="qty-btn plus-btn">+</button>
                                     </div>
                                     <button class="btn btn-sm text-danger p-0"><i
@@ -183,7 +295,8 @@
                             </div>
                         </div>
 
-                        <a href="product.html" class="text-decoration-none" style="color: var(--pink);">
+                        <a href="product.html" class="text-decoration-none mt-3 d-inline-block"
+                            style="color: var(--pink);">
                             <i class="fa fa-arrow-left"></i> Continue Shopping
                         </a>
                     </div>
@@ -213,43 +326,87 @@
         </div>
     </main>
 
-
-    <footer id="section-4" class="footer py-5" style="background-color: #f1227c;">
+    <footer class="py-4 mt-auto" style="background: var(--footer-pink);">
         <div class="container text-center">
-            <p class="mb-0 fw-bold">Toronto Cupcake © 2025</p>
+            <p class="mb-0 fw-bold text-dark-pink">Toronto Cupcake © 2025</p>
         </div>
     </footer>
+     <button type="button" class="btn btn-pink shadow" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bTtop.js"></script>
     <script>
-        // Quantity script
+        let itemToDelete = null;
+
+
+        const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        const successToast = new bootstrap.Toast(document.getElementById('successToast'));
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+
+        document.querySelectorAll('.text-danger').forEach(btn => {
+            btn.addEventListener('click', function () {
+
+                itemToDelete = this.closest('.cart-item-row');
+                deleteModal.show();
+            });
+        });
+
+
+        document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+            deleteModal.hide();
+
+
+            loadingOverlay.style.display = 'flex';
+
+            setTimeout(() => {
+                if (itemToDelete) {
+                    itemToDelete.remove();
+                }
+
+                loadingOverlay.style.display = 'none';
+                successToast.show();
+            }, 1500);
+        });
+
         document.querySelectorAll('.qty-selector').forEach(selector => {
             const minusBtn = selector.querySelector('.minus-btn');
             const plusBtn = selector.querySelector('.plus-btn');
             const input = selector.querySelector('.qty-input');
 
+            // Clicking Plus
+            plusBtn.addEventListener('click', () => {
+                let currentVal = parseInt(input.value) || 0; // Handle empty input
+                input.value = currentVal + 1;
+            });
+
+            // Clicking Minus
             minusBtn.addEventListener('click', () => {
-                let currentVal = parseInt(input.value);
+                let currentVal = parseInt(input.value) || 1;
                 if (currentVal > 1) {
                     input.value = currentVal - 1;
                 }
             });
 
-            plusBtn.addEventListener('click', () => {
-                let currentVal = parseInt(input.value);
-                input.value = currentVal + 1;
+            // NEW: Handling Typing
+            input.addEventListener('change', function () {
+                let val = parseInt(this.value);
+                // If it's not a number, or less than 1, reset to 1
+                if (isNaN(val) || val < 1) {
+                    this.value = 1;
+                }
             });
         });
         function smartBack() {
-            // Check if there is a page to go back to
             if (document.referrer.indexOf(window.location.host) !== -1) {
                 history.back();
             } else {
-                // If they landed here directly, just send them to the home page
                 window.location.href = 'index.html';
             }
         }
     </script>
 </body>
 
-</html
+</html>

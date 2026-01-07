@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toronto Cupcake FAQs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        :root {
+            --header-pink: #FFDEF9;
+            --dark-pink: #53142f;
+            --footer-pink: rgba(255, 222, 249, 0.95);
+            --pink: #f1227c;
+            --font-main: 'Lemonada', cursive, system-ui;
+            --bg-color: #fff;
+            --btn: #ffc1d6;
+            --card: #fff0f5;
+            --card-shadow: #f3c4d4;
+            --footer-light-pink: #f8d8e3;
+            --footer-dark-pink: #ffc1d6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.192), rgb(255, 255, 255)), url('ASSETS/sprinkles2.png') no-repeat center / cover;
+            padding: 8rem 1rem;
+            color: var(--dark-pink);
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .hero-section h1 {
+            color: var(--dark-pink);
+            font-weight: 900;
+            font-size: calc(2rem + 1vw);
+        }
+
+        .category-title {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .accordion-item {
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .accordion-button {
+            background-color: var(--card) !important;
+            color: var(--dark-pink) !important;
+            border-radius: 8px !important;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 6px var(--card-shadow);
+            padding: 12px 20px;
+        }
+
+        .accordion-button:not(.collapsed) {
+            box-shadow: none;
+        }
+
+        /* .accordion-button::after {
+            filter: brightness(0) invert(1);
+           
+        } */
+
+        .accordion-body {
+            font-size: 0.9rem;
+            padding: 15px;
+            border-radius: 0 0 8px 8px;
+            color: var(--dark-pink);
+            text-align: justify;
+        }
+
+        .accordion-body a {
+            color: inherit;
+            /* Takes the color from --dark-pink set on the parent */
+            text-decoration: none;
+            /* Removes the underline */
+            font-weight: bold;
+            /* Optional: makes it look like a link without the blue color */
+        }
+
+        .accordion-body a:hover {
+            color: var(--pink);
+            /* Changes color on hover to your theme's pink */
+            text-decoration: underline;
+            /* Optional: shows underline only when hovering */
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navv">
+        <div class="container">
+            <a class="logo-btn btn btn-light" href="index.html">
+                <img src="ASSETS/LOGO.png" alt="logo" style="width:30px;">
+            </a>
+            <div class="d-flex align-items-center gap-2 order-lg-last">
+                <a href="cart.html" class="btn cart-btn flex-shrink-0">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav my-3 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                        <ul class="dropdown-menu" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="blog.html">Blog</a></li>
+                            <li><a class="dropdown-item" href="community.html">Community</a></li>
+                            <li><a class="dropdown-item" href="event.html">Events</a></li>
+                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Frequently Asked Questions</h1>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">More</li>
+                    <li class="breadcrumb-item active" aria-current="page">FAQs</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <main>
+        <div class="container mb-5">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="category-title">Ordering</div>
+                    <div class="accordion" id="orderingFaq">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#order1">
+                                    How many days notice do I need?
+                                </button>
+                            </h2>
+                            <div id="order1" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    It is helpful to give a minimum of 48 hours notice for custom orders.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#order2">
+                                    What is the smallest order I can make?
+                                </button>
+                            </h2>
+                            <div id="order2" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    The minimum order is 1/2 dozen cupcakes.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#order3">
+                                    How much advanced notice to place an order?
+                                </button>
+                            </h2>
+                            <div id="order3" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    You need to place your order before 5PM Toronto Canada time to have it delivered the
+                                    following day.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="category-title mt-2">Delivery</div>
+                    <div class="accordion" id="deliveryFaq">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#delivery1">
+                                    Does Toronto Cupcake deliver?
+                                </button>
+                            </h2>
+                            <div id="delivery1" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    Yes, we deliver throughout the GTA with some same-day service available. Please
+                                    visit our delivery page for more information.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#delivery2">
+                                    What are the delivery fees?
+                                </button>
+                            </h2>
+                            <div id="delivery2" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    Delivery fees vary based on your location and range from $15 - $35 CAD. Free
+                                    delivery is available for large orders.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#delivery3">
+                                    What are your delivery times?
+                                </button>
+                            </h2>
+                            <div id="delivery3" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    Our earliest delivery window is 8am to noon. Our latest delivery window is noon to
+                                    6pm, 7 days a week. If you need something outside of this delivery schedule please
+                                    call or email us and we will try to accommodate.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="category-title mt-2">Ingredients</div>
+                    <div class="accordion" id="ingredientsFaq">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#ingre1">
+                                    Do you have gluten free cupcakes?
+                                </button>
+                            </h2>
+                            <div id="ingre1" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    Yes, by special order. Please <a href=contact.html>contact</a> us. There is a minimum order of a dozen.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#ingre2">
+                                    Do you use preservatives?
+                                </button>
+                            </h2>
+                            <div id="ingre2" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    No. Our cupcakes are baked daily with the finest ingredients from mostly local
+                                    suppliers. Flour Milk Eggs Sugar Butter are all sourced locally and contain no
+                                    additives. Our vanilla beans and extracts are from Madagascar or Tahiti. Our cream
+                                    cheese icings are made as used. Our cream cheese and other dairy are sourced from
+                                    Ontario and Quebec. Our chocolates used in making our cupcakes are the finest in the
+                                    world and come from Belgium, France and Switzerland.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="category-title mt-2">Others</div>
+                    <div class="accordion" id="othersFaq">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#others1">
+                                    Can I pick up my order?
+                                </button>
+                            </h2>
+                            <div id="others1" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    Yes, pickup is available at our Toronto <a href=contact.html>location</a>.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#others2">
+                                    Do you offer corporate event services?
+                                </button>
+                            </h2>
+                            <div id="others2" class="accordion-collapse collapse" data-bs-parent="#orderingFaq">
+                                <div class="accordion-body">
+                                    We offer customized cupcakes for corporate events, including logo designs. Please
+                                    visit our <a href=event.html>Corporate Events</a> page.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </main>
+    <footer class="footer-container py-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-md-5 d-flex flex-column align-items-center align-items-md-end pe-md-5">
+                    <h5 class="fw-bold mb-3">Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-auto d-none d-md-block footer-divider"></div>
+
+                <div class="col-md-5 ps-md-5 mt-4 mt-md-0 text-center text-md-start">
+                    <p class="mb-1">123 Cupcake Lane, Toronto, ON M1A 2B3</p>
+                    <p class="mb-1 fw-bold">(416) 555-0123</p>
+                    <p class="mb-0">inquiry@torontocupcake.com</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <button type="button" class="btn btn-pink shadow" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bTtop.js"></script>
+</body>
+
+</html>

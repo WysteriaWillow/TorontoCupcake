@@ -4,160 +4,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporate Logo Cupcakes | Toronto Cupcake</title>
+    <title>Contact Us | Toronto Cupcake</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+    <link href="main.css" rel="stylesheet">
+
     <style>
         :root {
-            --accent: #ff2f8a;
-            --bg-pink: #FFDEF9;
+            --header-pink: #FFDEF9;
             --dark-pink: #53142f;
-            --footer-pink: #FFB5D5;
+            --footer-pink: rgba(255, 222, 249, 0.95);
             --pink: #f1227c;
             --font-main: 'Lemonada', cursive, system-ui;
+            --bg-color: #fff;
+            --btn: #ffc1d6;
+            --card: #fff0f5;
+            --card-shadow: #f3c4d4;
+            --footer-light-pink: #f8d8e3;
+            --footer-dark-pink: #ffc1d6;
         }
+
         body {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
         }
+
         main {
             flex: 1 0 auto;
         }
-        .btn-pink {
-            background: #f35399;
-            color: white;
-            border-radius: 10px;
-            padding: 10px 25px;
-            transition: 0.3s;
-        }
-    
-        .btn-pink:hover {
-            background: #d61a6b;
-            color: white;
-            transform: scale(1.05);
-        }
-    
-        .contact { 
-            margin: 0 auto !important;
-            max-width: 1200px;
-        }
-    
-        .contact h2 {
-           color: var(--pink);
-            font-size: clamp(2rem, 5vw, 4.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-        }
-    
-        .contact p {
-           font-size: 1.1rem;
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.192), rgb(255, 255, 255)), url('ASSETS/sprinkles2.png') no-repeat center / cover;
+            padding: 8rem 1rem;
             color: var(--dark-pink);
-            margin-bottom: 1.5rem;
-            text-align: justify;
+            text-align: center;
+            margin-bottom: 0;
         }
-    
-        .form-section {
-            flex: 1; 
-            display: flex;
-            align-items: start;
-            padding: 30px 0;
+
+        .hero-section h1 {
+            color: var(--dark-pink);
+            font-weight: 900;
+            font-size: calc(2.5rem + 1.5vw);
         }
-    
-        /* Styling Form Inputs */
-        .form-control {
+
+        /* Spacing and Cards */
+        .info-section-wrapper {
+            margin-top: 40px;
+        }
+
+        .info-box {
+            text-align: center;
+            padding: 30px 15px;
+            background: #fff0f5;
+            box-shadow: 7px 8px 0 var(--card-shadow);
+            border-radius: 2rem;
+            height: 100%;
             border: none;
-            border-radius: 15px;
-            padding: 15px 25px;
-            font-family: var(--font-main);
-            font-size: 0.9rem;
-            font-style: italic;
+            transition: transform 0.3s ease;
         }
-    
-        .form-control::placeholder {
-            color: var(--brand-pink);
-            opacity: 0.7;
+
+        .info-icon {
+            color: var(--pink);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
         }
-    
-        .btn-submit {
-            background-color: #ffc1cf;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 10px 40px;
-            font-weight: bold;
-            transition: 0.3s;
+
+        .contact-form-card {
+            background: var(--card);
+            box-shadow: 7px 8px 0 var(--card-shadow);
+            padding: 30px;
+            border-radius: 2rem;
         }
-    
-        .btn-submit:hover {
-            background-color: var(--brand-pink);
-            color: white;
+
+        .contact-form-card .form-control {
+            background: #fff;
+            border: 1px solid var(--dark-pink);
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 12px;
         }
-    
-        /* Media Queries */
-        @media (min-width: 1920px) {
-            .container {
-                max-width: 1600px !important;    
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+            border: 1px solid #f3c4d4;
+            box-shadow: 7px 8px 0 #f3c4d4;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 991px) {
+            .hero-section {
+                padding: 40px 0 60px 0;
             }
-            .contact h2 {
-                font-size: 5.5rem; 
-            }
-            .contact p {
-                font-size: 1.6rem; 
-                max-width: 800px;
-            }
-            .form-control {
-                font-size: 1.2rem;
-                padding: 20px 30px;
-            }
-        }
-         @media (max-width: 1300px) {
-            .contact {
-             padding: 0 5rem;     
+
+            .display-3 {
+                font-size: 2.5rem;
             }
         }
 
-        @media (max-width: 991px) {
-            .contact {
-                margin: 0;
-                padding: 0 2rem;
+        @media (max-width: 767px) {
+
+            .info-box {
+                margin-bottom: 10px;
             }
-    
-            .contact h2 {
-                text-align: center;
+
+            .contact-form-card {
+                padding: 20px;
             }
-            
+
+            .map-container {
+                height: 250px;
+                margin-top: 30px;
+            }
+
+            .info-box h5 {
+                font-size: 1.1rem;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
         }
-        @media (max-width: 768px) {
-            .contact h2 { text-align: center; }
-            .footer { text-align: center; }
-        }
-        
-        @media (max-width: 415px) {
-            .contact h2 {
-                font-size: 1.5rem;
+
+        @media (max-width: 400px) {
+            main {
+                padding: 0 0.5rem;
             }
-            .form-section{
-            padding: 20px 0;
+
+            .display-3 {
+                font-size: 1.8rem;
             }
-    
-            
-        }
-    
-        @media (max-width: 369px) {
-            .contact h2 {
-                font-size: 1.2rem;
+
+            .hero-section p.lead {
+                font-size: 0.9rem;
             }
-          
+
+            .info-box {
+                padding: 20px 10px;
+            }
+
+            .info-box h5 {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .info-box p {
+                font-size: 0.75rem;
+            }
+
+            .btn-pink {
+                width: 100%;
+                padding: 10px !important;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navv">
         <div class="container">
             <a class="logo-btn btn btn-light" href="index.html">
@@ -165,7 +174,7 @@
             </a>
             <div class="d-flex align-items-center gap-2 order-lg-last">
                 <a href="cart.html" class="btn cart-btn flex-shrink-0">
-                <i class="fa fa-shopping-cart"></i>
+                    <i class="fa fa-shopping-cart"></i>
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#mainNav">
@@ -185,7 +194,7 @@
                             <li><a class="dropdown-item" href="blog.html">Blog</a></li>
                             <li><a class="dropdown-item" href="community.html">Community</a></li>
                             <li><a class="dropdown-item" href="event.html">Events</a></li>
-                            <li><a class="dropdown-item" href="location.html">Location</a></li>
+                            <li><a class="dropdown-item" href="FAQS.html">FAQs</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -193,58 +202,110 @@
         </div>
     </nav>
 
-    <main>
-        <div class="form-section">
-        <div class="container contact">
-            <div class="row">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <h2 class="mb-4">Let's Get In Touch</h2>
-                    <p>Have a question about our monthly flavors or need help picking the perfect dozen? We’re here to help!</p>
-                    <p>Whether it’s a birthday surprise, a "just because" gift, or a personal craving that won't quit, drop us a line. Our team will get back to you faster than a buttercream swirl!</p>
-                    
-                </div>
-
-                <div class="col-lg-5 offset-lg-1">
-                    <form>
-                        <div class="mb-4">
-                            <input type="text" class="form-control" placeholder="Your Name">
-                        </div>
-                        <div class="mb-4">
-                            <input type="email" class="form-control" placeholder="Your Email">
-                        </div>
-                        <div class="mb-4">
-                            <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-pink shadow-sm mb-3">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </main>
-    <footer id="section-4" class="footer py-5">
+    <section class="hero-section">
         <div class="container">
-            <div class="row g-4 align-items-center text-center text-md-start">
-                <div class="col-md-6">
-                    <h5 class="fw-bold">Visit Us</h5>
-                    <p class="mb-1">123 Cupcake Lane, Toronto, ON M1A 2B3</p>
-                    <p class="mb-0 fw-bold">(416) 555-0123</p>
+            <h1 class="display-3 fw-bold">Contact Us</h1>
+            <p class="lead px-3">Have a question about our flavors? We’re here to help faster than a buttercream swirl!
+            </p>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <main>
+        <section class="container info-section-wrapper mb-5">
+            <div class="row g-4">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="info-box">
+                        <i class="fas fa-phone-alt info-icon"></i>
+                        <h5 class="fw-bold fs-6 fs-md-5">(+647) 475-9458</h5>
+                        <p class="text-muted small">Give us a ring anytime</p>
+                    </div>
                 </div>
-                <div class="col-md-6 text-md-end socials">
-                    <div class="d-flex justify-content-center justify-content-md-end gap-4">
-                        <a href="#" class="text-dark"><i class="fab fa-facebook fa-2x"></i></a>
-                        <a href="#" class="text-dark"><i class="fab fa-instagram fa-2x"></i></a>
-                        <a href="#" class="text-dark"><i class="fab fa-twitter fa-2x"></i></a>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="info-box">
+                        <i class="fas fa-envelope info-icon"></i>
+                        <h5 class="fw-bold fs-6 fs-md-5">inquiry@torontocupcake.com</h5>
+                        <p class="text-muted small">We reply within 24 hours</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <div class="info-box">
+                        <i class="fas fa-map-marker-alt info-icon"></i>
+                        <h5 class="fw-bold fs-6 fs-md-5">Toronto, ON M1A</h5>
+                        <p class="text-muted small">123 Cupcake Lane</p>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section class="container mb-5 pb-5">
+            <div class="row g-4 g-lg-5">
+                <div class="col-lg-6">
+                    <div class="contact-form-card">
+                        <h2 class="fw-bold mb-3">Get In Touch !</h2>
+                        <p class="mb-4 small">Fill out the form below and our bakers will get back to you.</p>
+                        <form>
+                            <input type="email" class="form-control" placeholder="Email Address" required>
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                            <div class="text-center text-lg-start">
+                                <button type="submit" class="btn btn-pink w-100 w-md-auto px-5 py-3 fw-bold">Submit
+                                    Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="ps-lg-4">
+                        <h2 class="fw-bold mb-3">Our Location</h2>
+                        <p class="text-muted mb-4 small">Visit our flagship boutique in the heart of Toronto.</p>
+                        <div class="map-container">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.433857321516!2d-79.3005891238231!3d43.67035547110126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cc0772ce0211%3A0xbfb8b5e2b1e7729f!2sQueen%20St%20E%20%26%20Lee%20Ave%2C%20Toronto%2C%20ON%20M4E%201C9!5e0!3m2!1sen!2sca!4v1703274215234!5m2!1sen!2sca"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-container py-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-md-5 d-flex flex-column align-items-center align-items-md-end pe-md-5">
+                    <h5 class="fw-bold mb-3">Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-auto d-none d-md-block footer-divider"></div>
+
+                <div class="col-md-5 ps-md-5 mt-4 mt-md-0 text-center text-md-start">
+                    <p class="mb-1">123 Cupcake Lane, Toronto, ON M1A 2B3</p>
+                    <p class="mb-1 fw-bold">(416) 555-0123</p>
+                    <p class="mb-0">inquiry@torontocupcake.com</p>
+                </div>
+
+            </div>
         </div>
     </footer>
+    <button type="button" class="btn btn-pink shadow" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    
-
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bTtop.js"></script>
 </body>
+
 </html>
