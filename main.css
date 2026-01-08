@@ -103,7 +103,7 @@ h6 {
 .chat-header {
     background-color: #ff85a2; /* The vibrant pink in your image */
     padding: 20px;
-    color: white;
+    color: #fff;
 }
 
 .header-title {
@@ -167,9 +167,7 @@ h6 {
     color: #ff85a2;
     border-color: #ff85a2;
 }
-.btn-pink-send {
-    color: #ff85a2;
-}
+
 
 #btn-chat i { 
     display: flex; 
