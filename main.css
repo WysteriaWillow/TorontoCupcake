@@ -101,9 +101,9 @@ h6 {
     height: 350px; /* Total height of the content area */
 }
 .chat-header {
-    background-color: #ff85a2; /* The vibrant pink in your image */
+    background-color: var(--header-pink); /* The vibrant pink in your image */
     padding: 20px;
-    color: #fff;
+    color: var(--dark-pink);
 }
 
 .header-title {
@@ -112,7 +112,7 @@ h6 {
     font-size: 1.1rem;
 }
 .btn-close-pill {
-    background-color: #ffc2d1;
+    background-color: #ff85a2;
     border: none;
     width: 60px;
     height: 25px;
