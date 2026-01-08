@@ -39,21 +39,18 @@ h6 {
 
 #btn-back-to-top {
     position: fixed;
-    bottom: 20px;
+    bottom: 80px;
     right: 20px;
     display: none;
-    /* Hidden by default */
     z-index: 2000;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    /* Makes it circular */
     padding: 0;
     line-height: 50px;
     text-align: center;
-    border: 2px solid white;
-    background-color: #ff2f8a;
-    color: white;
+    border: 2px solid var(--dark-pink);
+    
 }
 
 /* Optional: Slight pulse animation when it appears */
@@ -72,6 +69,128 @@ h6 {
 #btn-back-to-top.show {
     display: block;
     animation: fadeIn 0.3s ease-out;
+}
+#btn-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--dark-pink);
+}
+
+/* Chat Window Styling */
+.chat-card {
+    position: fixed;
+    bottom: 85px;
+    right: 20px;
+    width: 400px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 2001;
+    border: none;
+}
+
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    height: 350px; /* Total height of the content area */
+}
+.chat-header {
+    background-color: #ff85a2; /* The vibrant pink in your image */
+    padding: 20px;
+    color: white;
+}
+
+.header-title {
+    font-weight: 900;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+.btn-close-pill {
+    background-color: #ffc2d1;
+    border: none;
+    width: 60px;
+    height: 25px;
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+/* Body Text */
+.chat-greeting {
+    color: var(--dark-pink);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.4;
+}
+.message-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #fffafb; /* Very light pink tint */
+}
+
+/* Styling the Text Input */
+.chat-input-container {
+    background-color: white;
+}
+
+.form-control:focus {
+    border-color: #ff85a2;
+    box-shadow: 0 0 0 0.25rem rgba(255, 133, 162, 0.25);
+}
+
+.btn-pink-send {
+    color: #ff85a2;
+    border: 1px solid #ff85a2;
+    border-radius: 0 10px 10px 0;
+}
+.btn-pink-send:hover {
+    color: var(--dark-pink);
+    border: 1px solid #ff85a2;
+    border-radius: 0 10px 10px 0;
+}
+
+/* Custom Scrollbar for a cleaner look */
+.message-area::-webkit-scrollbar {
+    width: 6px;
+}
+.message-area::-webkit-scrollbar-thumb {
+    background: #ffc2d1;
+    border-radius: 10px;
+}
+
+.outline-pink {
+    color: #ff85a2;
+    border-color: #ff85a2;
+}
+.btn-pink-send {
+    color: #ff85a2;
+}
+
+#btn-chat i { 
+    display: flex; 
+    align-items: center;
+    justify-content: center ;      
+    font-size: 1.2rem;       
+}
+#btn-chat:hover, #btn-back-to-top:hover{
+    transform: translateY(-5px);
+}
+@media (max-width: 576px) {
+    .chat-card {
+        width: calc(100% - 40px); /* Full width minus margins */
+        right: 20px;
+        left: 20px;
+        bottom: 85px;
+    }
+    
+    .chat-body {
+        height: 300px; /* Shorter message area for mobile */
+    }
 }
 /* Breadcrumb Styling */
 .breadcrumb-nav .breadcrumb {

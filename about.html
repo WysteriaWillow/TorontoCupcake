@@ -147,15 +147,6 @@
             </div>
         </section>
 
-        <!-- <section class="cta-banner py-5 my-5 text-white text-center"
-            style="background: linear-gradient(rgba(83, 20, 47, 0.8), rgba(83, 20, 47, 0.8)), url('ASSETS/promise.png') center/cover fixed;">
-            <div class="container py-5">
-                <h6 class="text-uppercase fw-bold mb-3">Order Now</h6>
-                <h2 class="display-5 fw-bold mb-4">We Are Always Ready To <br> Bake A Perfect Batch</h2>
-                <a href="product.html" class="btn btn-light rounded-pill px-5 py-3 fw-bold"
-                    style="color: var(--dark-pink);">Get Started</a>
-            </div>
-        </section> -->
     </main>
 
     <footer class="footer-container py-5">
@@ -185,6 +176,36 @@
     <button type="button" class="btn btn-pink shadow" id="btn-back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
+    <div class="chat-wrapper">
+        <div class="chat-card shadow d-none" id="chatWindow">
+            <div class="chat-header d-flex justify-content-between align-items-center">
+                <div class="header-title">
+                    <i class="bi bi-chat-dots-fill me-2"></i>Help Center
+                </div>
+                <button type="button" class="btn btn-close-pill" onclick="toggleChat()"></button>
+            </div>
+
+            <div class="chat-body">
+                <div class="message-area p-3" id="messageArea">
+                    <p class="chat-greeting">Hi there! 👋 How can we help you with your cupcake order today?</p>
+                </div>
+
+                <div class="chat-input-container p-3 border-top">
+                    <div class="input-group">
+                        <input type="text" class="form-control outline-pink" id="userConcern"
+                            placeholder="Type your concern..." aria-label="User concern">
+                        <button class="btn btn-pink-send" type="button" id="sendBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-pink shadow chat-trigger" id="btn-chat" onclick="toggleChat()">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="bTtop.js"></script>
