@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gourmet Cupcakes - Products</title>
+    <title>Products | Toronto Cupcake</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;700&display=swap" rel="stylesheet">
@@ -190,8 +190,12 @@
                 { name: "Chocolate Chocolate Ganache Cupcake", img: "ASSETS/products/daily/d7.webp", badge: "Classic", price: "3.75", desc: "Double chocolate experience with a silky dark chocolate ganache.", ingredients: "flour, dark chocolate, cocoa powder, heavy cream, butter, sugar, eggs." },
                 { name: "Chocolate Oreo Cupcake", img: "ASSETS/products/daily/d8.webp", badge: "Classic", price: "3.75", desc: "Cookie-infused chocolate cake topped with Oreo buttercream.", ingredients: "flour, milk, cocoa, sugar, eggs, Oreo cookie pieces, cream cheese." },
                 { name: "Chocolate Toffee Cupcake", img: "ASSETS/products/daily/d9.webp", badge: "Classic", price: "3.75", desc: "Chocolate cake topped with crunchy toffee bits and caramel.", ingredients: "flour, cocoa, butter, sugar, eggs, toffee bits (almonds), corn syrup." },
-                { name: "Chocolate Vanilla Chocolate Ganache", img: "ASSETS/products/daily/d10.webp", badge: "Classic", price: "3.75", desc: "Chocolate cake with vanilla icing dipped in a chocolate shell.", ingredients: "flour, cocoa, milk, vanilla, semi-sweet chocolate, butter, sugar." }
-            ],
+                { name: "Chocolate Vanilla Chocolate Ganache", img: "ASSETS/products/daily/d10.webp", badge: "Classic", price: "3.75", desc: "Chocolate cake with vanilla icing dipped in a chocolate shell.", ingredients: "flour, cocoa, milk, vanilla, semi-sweet chocolate, butter, sugar." },
+                { name: "Strawberry Swirl", img: "ASSETS/products/daily/d11.png", badge: "Classic", price: "3.75", desc: "Chocolate cake with vanilla icing dipped in a chocolate shell.", ingredients: "flour, cocoa, milk, vanilla, semi-sweet chocolate, butter, sugar." },
+                { name: "Cherry Chocolate", img: "ASSETS/products/daily/d12.png", badge: "Classic", price: "3.75", desc: "Chocolate cake with vanilla icing dipped in a chocolate shell.", ingredients: "flour, cocoa, milk, vanilla, semi-sweet chocolate, butter, sugar." },
+                { name: "Blueberry Lemon Cupcake", img: "ASSETS/products/daily/d13.png", badge: "Classic", price: "3.75", desc: "Chocolate cake with vanilla icing dipped in a chocolate shell.", ingredients: "flour, cocoa, milk, vanilla, semi-sweet chocolate, butter, sugar." },
+                { name: "Classic Velvets", img: "ASSETS/products/daily/d14.png", badge: "Classic", price: "3.75", desc: "Chocolate cake with vanilla icing dipped in a chocolate shell.", ingredients: "flour, cocoa, milk, vanilla, semi-sweet chocolate, butter, sugar." },
+            ],  
             holiday: [
                 { name: "Canada Day Cupcake", img: "ASSETS/products/holiday/h1.webp", badge: "Holiday", price: "3.75", desc: "Red and white festive cupcake to celebrate Canada Day.", ingredients: "flour, sugar, butter, eggs, red food coloring, vanilla bean, milk." },
                 { name: "Easter Cupcake", img: "ASSETS/products/holiday/h2.png", badge: "Holiday", price: "3.75", desc: "Spring vanilla cake with pastel frosting and mini chocolate eggs.", ingredients: "flour, sugar, butter, mini eggs (milk chocolate), vanilla extract." },
@@ -213,6 +217,7 @@
                 { name: "Mother's Day Half-Dozen", img: "ASSETS/products/bundle/b5.webp", badge: "Bundle", price: "21.50", desc: "Elegant floral cupcakes to show Mom some love.", ingredients: "Rosewater, vanilla, sugar flowers, butter, milk, flour." }
             ]
         };
+        
 
         let currentPage = 1;
         const itemsPerPage = 8;
@@ -353,6 +358,20 @@
 
         filteredItems = [...allProducts];
         render();
+
+        window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery) {
+        const searchInput = document.getElementById('cupcake-search');
+        searchInput.value = searchQuery;       
+        searchInput.classList.add('expanded');
+        toggleClearBtn(); 
+        handleFilterAndSearch();
+        document.getElementById('product-grid').scrollIntoView({ behavior: 'smooth' });
+    }
+});
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
